@@ -1,0 +1,61 @@
+/*----------------------------------------------------------------------------------------------
+  Imagescene Generator - Copyright (C) 2023, TRMSC - https://github.com/TRMSC
+  GNU General Public Licence 3.0 - http://www.gnu.de/documents/gpl-3.0.en.html
+  CC-BY-SA 4.0 DE https://creativecommons.org/licenses/by-sa/4.0/deed.de
+  Discard the copyright note by using the creative commons license (attribution is sufficient)
+----------------------------------------------------------------------------------------------*/
+
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12pt;
+    margin: 60px 250px;
+}
+@media (max-width: 1000px) {
+    html {
+        margin: 40px 80px;
+    }
+}
+@media (max-width: 800px) {
+    html {
+        margin: 30px 50px;
+    }
+}
+@media (max-width: 480px) {
+    html {
+        margin: 20px 25px;
+    }
+}
+svg {
+    border-radius: 10px;
+    box-shadow: 8px -8px 20px 2px #d9d9d9;
+}
+a {
+    color: #cd8016;
+}
+.part {
+    margin-top: 50px;
+}
+.smallpart {
+    margin-top: 20px;
+    border: 1px solid #919191;
+    border-radius: 10px;
+    padding: 5px 20px 10px 20px;
+    background-color: #7b876d2b;
+}
+h3 {
+    text-decoration: underline;
+}
+input[type="button"] {
+    cursor: pointer;
+    border-radius: 3px;
+    border-style:solid;
+    border-width:1px;
+    border-color:#bebebe;
+    background-color:#695753;
+    color:#ffffff;
+    text-align:center;
+    font-size: 12pt;
+}
+input[type="button"]:hover {
+    background-color:#ab9675;
+}
