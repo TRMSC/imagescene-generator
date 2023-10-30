@@ -2,7 +2,7 @@
 
 Tool for generating a dynamic scene from an image url.
 
-# Use
+## Use
 
 Visit the [Imagescene Generator project page](https://trmsc.github.io/imagescene-generator/) for online creatings (german) or download the repository for offline usage.
 
