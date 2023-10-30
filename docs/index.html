@@ -1,0 +1,84 @@
+<!----------------------------------------------------------------------------------------------
+  Imagescene Generator - Copyright (C) 2023, TRMSC - https://github.com/TRMSC
+  GNU General Public Licence 3.0 - http://www.gnu.de/documents/gpl-3.0.en.html
+  CC-BY-SA 4.0 DE https://creativecommons.org/licenses/by-sa/4.0/deed.de
+  Discard the copyright note by using the creative commons license (attribution is sufficient)
+----------------------------------------------------------------------------------------------->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagescene Generator</title>
+
+    <link rel="stylesheet" href="src/style.css">
+    <script src="src/script.js"></script>  
+
+  </head>
+  <body>
+    <a href="index.html">
+      <img src="img/imagescene-banner.svg" width="100%">
+    </a>
+    <div class="part">
+      <h2>
+        Über das Projekt:
+      </h2>
+      <p>
+        Mithilfe des Imagescene Generators können Bilder in dynamische Szenen verwandelt werden.
+        Beispielsweise können hierdurch Kurs- oder Themenbanner im Lernmanagementsystem Moodle mit dezenten Animationen erzeugt werden. 
+        Der erzeugte SVG-Code kann jedoch auch in anderen digitalen Szenarien eingesetzt werden.
+      </p>
+    </div>
+    <div class="part">
+      <h2>
+        Informationen zur Nutzung:
+      </h2>
+      <p>
+        Der Imagescene wurde mit offenem Quelltext erstellt und unter der
+        <a target="_blank" href="https://github.com/TRMSC/imagescene-generator/blob/main/LICENSE">GNU GPL 3.0</a>
+        mit Copyright-Hinweis lizensiert. Diese Lizenz eignet sich besonders zur geschützten, offenen Weitergabe und
+        Modifizierung von Quellcode. Für bestimmte Projekte kann sich eine
+        Creative Commons Lizenz besser anbieten, sodass das Tool ebenso unter der 
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank">CC-BY-SA 4.0 DE</a> 
+        lizensiert ist. In diesem Fall entfällt die Weitergabe des Copyright-Hinweises durch die Autorennennung. 
+      </p>
+      <p>
+        Der Quellcode, weitere Informationen zur Lizensierung sowie Möglichkeiten zur Mitwirkung
+        sind über das Tool-Repository auf Github zu erreichen.
+      </p>
+      <p>
+        <a href="https://github.com/TRMSC/imagescene-generator" target="_blank"><input type="button" value="Imagescene Generator auf Github öffnen"></a>
+      </p>
+    </div>
+    <div class="part">
+      <h2>
+        Bildszene erstellen
+      </h2>
+      <p>
+        Um eine Bildszene zu erstellen, wird die URL zu einer Bilddatei benötigt. 
+        Es kann dabei auch ein Codeschnipsel verwendet werden, der eine solche URL beinhaltet.
+      </p>
+      <p>
+        Bei der Arbeit in Moodle kann im Editor ein Bild eingefügt werden und der gesamte, hierdurch erzeugte Code - oder nur die Bild-URL selbst - eingesetzt werden.
+      </p>
+      <p>
+        <u><b>Hinweis:</b> Der Generator selbst greift nicht auf die URL zu, sondern verpackt diese zusammen mit dem animierten Overlay in einen neuen SVG-Code.</u>
+      </p>
+      <div class="smallpart">
+        <h3>
+          Image-URL
+        </h3>
+        <p>
+          Textarea...
+        </p>
+      </div>
+    </div>
+    <br>
+    <hr style="margin-top: 20px;">
+  </body>
+  <footer style="bottom: auto; font-size: smaller;">
+    &copy; <a target="_blank" href="https://github.com/TRMSC"> TRMSC</a> <span id="year"></span> - 
+      <a target="_blank" href="https://github.com/TRMSC/imagescene-generator#licence">GNU GPL 3.0</a> - Imagescene Generator
+  </footer>
+</html>
