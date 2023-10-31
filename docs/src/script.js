@@ -62,6 +62,24 @@ listenEvents = () => {
  */
 generateScene = () => {
 
-  console.log('start generating the scene');
+  // Get user input
+  let content = document.getElementById('imagescene-url').value;
+
+  // Search for embeded url
+  if (content.includes('src="') || content.includes("src='")) {
+      const srcStart = content.indexOf('src="');
+      if (srcStart === -1) {
+          srcStart = content.indexOf("src='");
+      }
+      const srcEnd = content.indexOf('"', srcStart + 5);
+  
+      if (srcStart !== -1 && srcEnd !== -1) {
+          var url = content.substring(srcStart + 5, srcEnd);
+      }
+  } else {
+      // Use whole content if there is no embeded url
+      url = content;
+      console.log('Gefundene URL (Variante 2):', url);
+  }
 
 };
