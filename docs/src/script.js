@@ -107,7 +107,10 @@ getDimensions = () => {
 generateScene = () => {
 
   // Get user input
-  let content = document.getElementById('imagescene-url').value;
+  let uInput = document.getElementById('imagescene-url');
+  let content = uInput.value;
+  let wInput = document.getElementById('imagescene-w');
+  let hInput = document.getElementById('imagescene-h');
 
   // Search for embeded url
   if (content.includes('src="') || content.includes("src='")) {
@@ -124,5 +127,29 @@ generateScene = () => {
       // Use whole content if there is no embeded url
       url = content;
   }
+
+  // Check completeness
+  let check = true;
+
+  if (uInput.value === '') {
+    uInput.style.backgroundColor = '#eda8252e';
+    check = false;
+  }
+  if (wInput.value === '') {
+    wInput.style.backgroundColor = '#eda8252e';
+    check = false;
+  }
+  if (hInput.value === '') {
+    hInput.style.backgroundColor = '#eda8252e';
+    check = false;
+  }
+
+  setTimeout(() => {
+    uInput.style.backgroundColor = ''; 
+    wInput.style.backgroundColor = ''; 
+    hInput.style.backgroundColor = ''; 
+  }, 800); 
+
+  if (!check) return;
 
 };
