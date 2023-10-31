@@ -6,18 +6,62 @@
 ------------------------------------------------------------------------------------------------*/
 
 /**
+ * Call functions
+ * 
  * @event
  * @listens onload
  * @class window 
- * @author TRMSC
- * @see https://github.com/TRMSC/hypetyper
- * @description get year for footer
+ * @returns {void}
  */
 window.onload = function() {
 
-    let time = new Date();
-    let year = time.getFullYear();
-    document.getElementById("year").innerHTML = year;
-    return;
+  addYear();
+  listenEvents();
+  return;
     
+};
+
+
+/**
+ * Implement year
+ * 
+ * @function addYear
+ * @returns {void}
+ *
+ */
+addYear = () => {
+
+  let time = new Date();
+  let year = time.getFullYear();
+  document.getElementById("year").innerHTML = year;
+
+};
+
+
+/**
+ * Collect eventlisteners
+ * 
+ * @function listenEvents
+ * @returns {void}
+ *
+ */
+listenEvents = () => {
+
+  let generateButton = document.getElementById('imagescene-generate');
+  generateButton.addEventListener('click', generateScene);
+
+};
+
+
+/**
+ * Start generating the scene
+ * 
+ * @function generateScene
+ * @returns {void}
+ *
+ */
+generateScene = () => {
+
+  console.log('start generating the scene');
+
 };
