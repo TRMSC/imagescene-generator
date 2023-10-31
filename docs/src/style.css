@@ -71,8 +71,16 @@ input[type="button"]:hover {
 .select-container {
     display: flex;
     flex-direction: row;
-    column-gap: 1em;
+    gap: 1em;
     margin-bottom: 0.7em;
+}
+@media (max-width: 1000px) {
+    .select-container {
+        flex-direction: column;
+    }
+}
+.select-container input {
+    width: 80px;
 }
 select {
     font-size: 12pt;
