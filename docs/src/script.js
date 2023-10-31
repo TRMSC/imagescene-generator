@@ -47,8 +47,52 @@ addYear = () => {
  */
 listenEvents = () => {
 
+  // Check dimensions when textareas content was changed
+  let textarea = document.getElementById('imagescene-url');
+  textarea.addEventListener('input', getDimensions);
+
+  // Generate scene
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
+
+};
+
+
+/**
+ * Get images dimensions
+ * 
+ * @function getDimensions
+ * @returns {void}
+ *
+ */
+getDimensions = () => {
+
+  // Get user input
+  let content = document.getElementById('imagescene-url').value;
+  let wInput = document.getElementById('imagescene-w');
+  let hInput = document.getElementById('imagescene-h');
+
+  // Search for width and height
+  if (content.includes('width=') && content.includes('height=')) {
+      const widthStart = content.indexOf('width="');
+      const heightStart = content.indexOf('height="');
+      const widthEnd = content.indexOf('"', widthStart + 7);
+      const heightEnd = content.indexOf('"', heightStart + 8);
+
+      if (widthStart !== -1 && heightStart !== -1 && widthEnd !== -1 && heightEnd !== -1) {
+          const widthValue = content.substring(widthStart + 7, widthEnd);
+          const heightValue = content.substring(heightStart + 8, heightEnd);
+
+          // Check correctness
+          if (!/%$/.test(widthValue) && !/%$/.test(heightValue)) {
+              wInput.value = widthValue.replace(/[^\d.-]/g, '');
+              hInput.value = heightValue.replace(/[^\d.-]/g, '');
+          } else {
+            wInput.value = "";
+            hInput.value = "";
+          }
+      }
+  }
 
 };
 
