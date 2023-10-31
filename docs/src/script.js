@@ -79,7 +79,6 @@ generateScene = () => {
   } else {
       // Use whole content if there is no embeded url
       url = content;
-      console.log('Gefundene URL (Variante 2):', url);
   }
 
 };
