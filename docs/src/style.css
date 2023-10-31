@@ -59,7 +59,21 @@ input[type="button"] {
 input[type="button"]:hover {
     background-color:#ab9675;
 }
+.bigbutton {
+    font-size: large!important;
+    padding: 5px 8px;
+}
 .input-container {
     display: flex;
     flex-direction: column;
+    margin-bottom: 0.7em;
+}
+.select-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1em;
+    margin-bottom: 0.7em;
+}
+select {
+    font-size: 12pt;
 }

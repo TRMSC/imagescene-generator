@@ -109,9 +109,26 @@
           Einstellungen
         </h3>
         <div class="input-container">
-          <label for="imagescene-url"><b>Alleinstehende Image-URL oder eingebunden als HTML-Schnipsel</b>:</label>
+          <label for="imagescene-url">Alleinstehende Image-URL oder eingebunden als HTML-Schnipsel:</label>
           <textarea class="generate" id="imagescene-url" name="imagescene-url" rows="3" spellcheck="false" wrap="off"></textarea>
         </div>
+        <div class="select-container">
+          <div>
+            <label for="imagescene-ar">Stil:</label>
+            <select id="imagescene-style" name="imagescene-style">
+              <option value="indiansummer">Indian Summer</option>
+            </select>
+          </div>
+          <div>
+            <label for="imagescene-ar">Seitenverhältnis:</label>
+            <select id="imagescene-ar" name="imagescene-ar">
+              <option value="16-9">16:9</option>
+            </select>
+          </div>
+        </div>
+        <p>
+          <input type="button" class="bigbutton" value='Szene generieren'>
+        </p>
       </div>
     </div>
     <br>
