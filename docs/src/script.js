@@ -169,8 +169,13 @@ generateScene = () => {
 
   }
 
+  // Set status
   let status = document.getElementById('imagescene-status');
   status.textContent = '✅ Ergebnis ist aktuell';
+
+  // Show result
+  let show = document.getElementById('resultpart');
+  show.classList.remove('hide');
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
