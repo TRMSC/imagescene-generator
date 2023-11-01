@@ -221,6 +221,7 @@ changeStatus = () => {
 
   let status = document.getElementById('imagescene-status');
   status.textContent = '🔁 Ergebnis ist nicht aktuell';
+  status.setAttribute('title', 'Bitte Szene mit den geänderten Werten neu generieren');
 
 };
 
@@ -277,6 +278,7 @@ generateScene = () => {
   // Set status
   let status = document.getElementById('imagescene-status');
   status.textContent = '✅ Ergebnis ist aktuell';
+  status.setAttribute('title', 'Die generierte Szene entspricht den Eingaben innerhalb des Generators');
 
   // Show result
   let show = document.getElementById('resultpart');
