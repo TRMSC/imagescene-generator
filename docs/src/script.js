@@ -225,6 +225,7 @@ generateScene = () => {
   let content = uInput.value;
   let wInput = document.getElementById('imagescene-w');
   let hInput = document.getElementById('imagescene-h');
+  let url;
 
   // Search for embeded url
   if (content.includes('src="') || content.includes("src='")) {
@@ -235,7 +236,7 @@ generateScene = () => {
       const srcEnd = content.indexOf('"', srcStart + 5);
   
       if (srcStart !== -1 && srcEnd !== -1) {
-          var url = content.substring(srcStart + 5, srcEnd);
+          url = content.substring(srcStart + 5, srcEnd);
       }
   } else {
       // Use whole content if there is no embeded url
