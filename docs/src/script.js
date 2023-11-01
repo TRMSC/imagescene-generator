@@ -28,10 +28,6 @@ const shareData = {
  */
 window.onload = function() {
 
-  // Hide results part
-  let show = document.getElementById('resultpart');
-  show.style.display = "none";
-
   // Call functions
   addYear();
   listenEvents();
