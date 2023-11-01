@@ -240,23 +240,10 @@ generateScene = () => {
   let wInput = document.getElementById('imagescene-w');
   let hInput = document.getElementById('imagescene-h');
   let altInput = document.getElementById('imagescene-alt');
-  let url;
 
-  // Search for embeded url
-  if (content.includes('src="') || content.includes("src='")) {
-      const srcStart = content.indexOf('src="');
-      if (srcStart === -1) {
-          srcStart = content.indexOf("src='");
-      }
-      const srcEnd = content.indexOf('"', srcStart + 5);
-  
-      if (srcStart !== -1 && srcEnd !== -1) {
-          url = content.substring(srcStart + 5, srcEnd);
-      }
-  } else {
-      // Use whole content if there is no embeded url
-      url = content;
-  }
+  // Search for embedded url using regex
+  const srcMatch = content.match(/src=["'](.*?)["']/);
+  let url = srcMatch ? srcMatch[1] : content;
 
   // Check completeness
   let check = true;
@@ -304,7 +291,7 @@ generateScene = () => {
   let templateContent = '<svg id="example"><image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" /></svg>';
 
   // Replace placeholders
-  templateContent = templateContent.replace(/\$URL/g, uInput.value);
+  templateContent = templateContent.replace(/\$URL/g, url);
   templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
   templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
   templateContent = templateContent.replace(/\$ALT/g, altInput.value);
