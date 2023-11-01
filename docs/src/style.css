@@ -85,3 +85,7 @@ input[type="button"]:hover {
 select {
     font-size: 12pt;
 }
+#imagescene-result {
+    font-size: 11pt;
+    background-color: #a1b1aa1a;
+}
