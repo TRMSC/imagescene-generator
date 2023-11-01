@@ -55,6 +55,10 @@ listenEvents = () => {
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
 
+  // Copy to clipboard
+  let clipboardButton = document.getElementById('imagescene-copy');
+  clipboardButton.addEventListener('click', copyClipboard);
+
 };
 
 
@@ -156,4 +160,29 @@ generateScene = () => {
   let templateName = document.getElementById('imagescene-template').value;
   let templatePath = '../templates/' + templateName + '.svg';
   
+  copyClipboard();
+
+};
+
+
+/**
+ * Copy to clipboard
+ * 
+ * @function copyClipboard
+ * @returns {void}
+ *
+ */
+copyClipboard = () => {
+
+  document.getElementById('imagescene-result').select();
+  document.execCommand('copy');
+  let content = document.getElementById("imagescene-info");
+  setTimeout(function () {
+    content.classList.add("imagesceneConfirm");
+  }, 50)
+  setTimeout(function () {
+    content.classList.remove("imagesceneConfirm");
+    document.getSelection().removeAllRanges();
+  }, 1400)
+
 };
