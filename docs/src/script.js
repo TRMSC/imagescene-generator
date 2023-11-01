@@ -152,4 +152,8 @@ generateScene = () => {
 
   if (!check) return;
 
+  // Get template
+  let templateName = document.getElementById('imagescene-template').value;
+  let templatePath = '../templates/' + templateName + '.svg';
+  
 };
