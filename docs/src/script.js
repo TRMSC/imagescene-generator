@@ -75,6 +75,10 @@ listenEvents = () => {
  */
 getDimensions = () => {
 
+  // Change status
+  let status = document.getElementById('imagescene-status');
+  status.textContent = '🔁 Ergebnis ist nicht aktuell';
+
   // Get user input
   let content = document.getElementById('imagescene-url').value;
   let wInput = document.getElementById('imagescene-w');
@@ -164,6 +168,9 @@ generateScene = () => {
     return;
 
   }
+
+  let status = document.getElementById('imagescene-status');
+  status.textContent = '✅ Ergebnis ist aktuell';
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
