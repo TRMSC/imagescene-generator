@@ -109,3 +109,8 @@ select {
     -webkit-transform: translateY(-150px); 
     transform: translateY(-150px); 
 }
+footer {
+    bottom: auto;
+    font-size: smaller;
+    text-align: right;
+}
