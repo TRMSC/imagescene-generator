@@ -6,7 +6,20 @@
 ------------------------------------------------------------------------------------------------*/
 
 /**
- * Call functions
+ * Define const variables
+ * 
+ * @param {array} shareData Site information for share method
+ *
+ */
+const shareData = {
+  title: 'Imagescene Generator | TRMSC',
+  text: 'Create dynamic scenes from images | TRMSC',
+  url: window.location
+}
+
+
+/**
+ * Handle onload progress
  * 
  * @event
  * @listens onload
@@ -54,6 +67,10 @@ addYear = () => {
  */
 listenEvents = () => {
 
+  // Share page
+  let shareButton = document.getElementById('imagescene-share');
+  shareButton.addEventListener('click', sharePage);
+
   // Check dimensions when textareas content was changed
   let textarea = document.getElementById('imagescene-url');
   textarea.addEventListener('input', getDimensions);
@@ -78,6 +95,62 @@ listenEvents = () => {
   let downloadButton = document.getElementById('imagescene-download');
   downloadButton.addEventListener('click', downloadSvg);
 
+};
+
+
+/**
+ * Share page by using the share api
+ * 
+ * @async
+ * @function sharePage
+ * @throws {error} When the share api isn't available or the share fails
+ * 
+ */
+sharePage = async () => {
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      console.log('Shared successfully');
+    } catch (err) {
+      console.log(`Error: ${err}`);
+    }
+  } else {
+      copyUrl();
+  }
+  
+};
+
+
+/**
+ * Copy URL to clipboard
+ * 
+ * @function copyUrl
+ * @returns {void}
+ * 
+ */
+copyUrl = () => {
+
+  // Handle URL
+  const textArea = document.createElement('textarea');
+  textArea.value = shareData.url;
+  document.body.appendChild(textArea);
+  textArea.select();
+
+  // Copy or throw an error
+  try {
+    document.execCommand('copy');
+    alert(
+      'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
+      'Die URL der Projektseite wurde daher in die Zwischenablage kopiert. ✔️'
+    );
+  } catch (err) {
+    console.error('Fehler beim Kopieren in die Zwischenablage: ', err);
+  }
+
+  // Entfernen Sie das Textfeld aus dem Dokument
+  document.body.removeChild(textArea);
+  
 };
 
 
