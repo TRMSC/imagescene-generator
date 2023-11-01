@@ -15,8 +15,15 @@
  */
 window.onload = function() {
 
+  // Hide results part
+  let show = document.getElementById('resultpart');
+  show.style.display = "none";
+
+  // Call functions
   addYear();
   listenEvents();
+
+  // Return
   return;
     
 };
@@ -175,7 +182,7 @@ generateScene = () => {
 
   // Show result
   let show = document.getElementById('resultpart');
-  show.classList.remove('hide');
+  show.style.display = "";
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
