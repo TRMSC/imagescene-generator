@@ -142,7 +142,7 @@ copyUrl = () => {
     document.execCommand('copy');
     alert(
       'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
-      'Die URL der Projektseite wurde daher in die Zwischenablage kopiert. ✔️'
+      'Die URL der Projektseite wurde daher zum Teilen in die Zwischenablage kopiert. ✔️'
     );
   } catch (err) {
     console.error('Fehler beim Kopieren in die Zwischenablage: ', err);
