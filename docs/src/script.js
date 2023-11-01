@@ -148,13 +148,18 @@ generateScene = () => {
     check = false;
   }
 
-  setTimeout(() => {
-    uInput.style.backgroundColor = ''; 
-    wInput.style.backgroundColor = ''; 
-    hInput.style.backgroundColor = ''; 
-  }, 800); 
+  if (!check) {
+    showInfo('Bitte alle Felder ausfüllen');
 
-  if (!check) return;
+    setTimeout(() => {
+      uInput.style.backgroundColor = ''; 
+      wInput.style.backgroundColor = ''; 
+      hInput.style.backgroundColor = ''; 
+    }, 1900); 
+
+    return;
+
+  }
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
@@ -186,14 +191,34 @@ generateScene = () => {
  */
 copyClipboard = () => {
 
+  // Copy content
   document.getElementById('imagescene-result').select();
   document.execCommand('copy');
-  let content = document.getElementById("imagescene-info");
+
+  // Call infobox
+  let content = 'In die Zwischenablage kopiert ✔';
+  showInfo(content);
+
+};
+
+
+/**
+ * Show information box
+ * 
+ * @function showInfo
+ * @param content Message for the infobox
+ * @returns {void}
+ *
+ */
+showInfo = (content) => {
+
+  let infobox = document.getElementById("imagescene-info");
+  infobox.textContent = content;
   setTimeout(function () {
-    content.classList.add("imagesceneConfirm");
+    infobox.classList.add("imagesceneConfirm");
   }, 50)
   setTimeout(function () {
-    content.classList.remove("imagesceneConfirm");
+    infobox.classList.remove("imagesceneConfirm");
     document.getSelection().removeAllRanges();
   }, 1400)
 
