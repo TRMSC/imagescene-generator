@@ -58,6 +58,14 @@ listenEvents = () => {
   let textarea = document.getElementById('imagescene-url');
   textarea.addEventListener('input', getDimensions);
 
+  // Update status when width input was changes
+  let width = document.getElementById('imagescene-w');
+  width.addEventListener('input', changeStatus);
+
+  // Update status when height input was changes
+  let height = document.getElementById('imagescene-h');
+  height.addEventListener('input', changeStatus);
+
   // Generate scene
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
@@ -83,8 +91,7 @@ listenEvents = () => {
 getDimensions = () => {
 
   // Change status
-  let status = document.getElementById('imagescene-status');
-  status.textContent = '🔁 Ergebnis ist nicht aktuell';
+  changeStatus();
 
   // Get user input
   let content = document.getElementById('imagescene-url').value;
@@ -112,6 +119,21 @@ getDimensions = () => {
           }
       }
   }
+
+};
+
+
+/**
+ * Change status
+ * 
+ * @function changeStatus
+ * @returns {void}
+ *
+ */
+changeStatus = () => {
+
+  let status = document.getElementById('imagescene-status');
+  status.textContent = '🔁 Ergebnis ist nicht aktuell';
 
 };
 
