@@ -95,16 +95,17 @@
     </div>
 
     <div class="part">
+
       <h2>
         Bildszene erstellen
       </h2>
       <p>
         Um eine Bildszene zu erstellen, wird die URL zu einer Bilddatei benötigt. 
         Es kann dabei auch ein Codeschnipsel verwendet werden, der eine solche URL beinhaltet.
-        Bei der Arbeit in Moodle kann im Editor ein Bild eingefügt werden und der gesamte, hierdurch erzeugte Code - oder nur die Bild-URL selbst - eingesetzt werden.
+        Bei der Arbeit in Moodle kann im Editor somit ein Bild eingefügt werden und der gesamte, hierdurch erzeugte Code - oder nur die Bild-URL selbst - eingesetzt werden.
       </p>
       <p>
-        <b>Hinweis:</b> <u>Der Generator selbst greift nicht auf die URL zu, sondern verpackt diese zusammen mit dem animierten Overlay in einen neuen SVG-Code.</u>
+        <u>Der Vorteil bei der Verwendung eines Codeschnipsels ist, dass vorhandene Werte für das Seitenverhältnis sowie für den Alt-Tag nach Möglichkeit automatisch übernommen werden.</u> ✨
       </p>
 
       <div class="smallpart">
@@ -115,6 +116,11 @@
           <label for="imagescene-url">Alleinstehende Image-URL oder eingebunden als HTML-Schnipsel:</label>
           <textarea class="generate" id="imagescene-url" name="imagescene-url" rows="3" spellcheck="false" wrap="off"></textarea>
         </div>
+        <div class="input-container">
+          <sub>
+            Der Generator ruft die verwendete URL nicht auf, sondern verpackt diese zusammen mit dem animierten Overlay in einen neuen SVG-Code.
+          </sub>
+        </div>
         <div class="select-container">
           <div>
             <label for="imagescene-template">Stil:</label>
@@ -123,17 +129,17 @@
             </select>
           </div>
           <div>
-            <label for="imagescene-w">Breite*:</label>
+            <label for="imagescene-w">Breite:</label>
             <input type="number" id="imagescene-w" name="imagescene-w" min="0">
           </div>
           <div>
-            <label for="imagescene-h">Höhe*:</label>
+            <label for="imagescene-h">Höhe:</label>
             <input type="number" id="imagescene-h" name="imagescene-h" min="0">
           </div>
         </div>
         <div class="input-container">
           <sub>
-            * Breite und Höhe beziehen sich auf die Maße des Bildes. Entscheidend ist das Seitenverhältnis, sodass die Einheit nicht beachtet werden muss.
+            Breite und Höhe beziehen sich auf die Maße des verwendeten Bildes. Entscheidend ist das Seitenverhältnis, sodass die Einheit nicht beachtet werden muss.
             Wenn die URL des Bildes als Code-Schnipsel mit den entsprechenden Abmessungen (z.B. aus dem Editor in Moodle heraus) eingefügt wird, werden die Werte automatisch ermittelt.
           </sub>
         </div>
