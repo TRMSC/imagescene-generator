@@ -89,6 +89,9 @@ select {
     font-size: 11pt;
     background-color: #a1b1aa1a;
 }
+#imagescene-status {
+    cursor: help;
+}
 #imagescene-info {
     padding: 10px;
     background-color: rgba(0,0,0,.7);
