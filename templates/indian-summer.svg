@@ -3,7 +3,7 @@
 <svg class="ic-banner" width="100%" viewBox="0 0 $WIDTH $HEIGHT" xmlns="http://www.w3.org/2000/svg">
 
   <g class="hero-image">
-    <image width="$WIDTH" height="$HEIGHT" xlink:href="$URL" />
+    <image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" />
   </g>
 
   <g class="ic-dust" style="opacity: 0.1;">
