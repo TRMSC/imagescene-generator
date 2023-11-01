@@ -205,6 +205,7 @@ generateScene = () => {
   // Show result
   let show = document.getElementById('resultpart');
   show.style.display = "";
+  scrollResult();
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
@@ -223,6 +224,30 @@ generateScene = () => {
 
   // Copy code to the clipboard
   copyClipboard();
+
+};
+
+
+/**
+ * Scroll to result
+ * 
+ * @function scrollResult
+ * @returns {void}
+ *
+ */
+scrollResult = () => {
+
+  // Get target
+  const target = document.getElementById('resultpart');
+
+  // Calculate position
+  const targetPosition = target.getBoundingClientRect().top + window.scrollY - 50;
+
+  // Scroll to position
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
+  });
 
 };
 
