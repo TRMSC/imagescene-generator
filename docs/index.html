@@ -115,10 +115,6 @@
           <label for="imagescene-url">Alleinstehende Image-URL oder eingebunden als HTML-Schnipsel:</label>
           <textarea class="generate" id="imagescene-url" name="imagescene-url" rows="3" spellcheck="false" wrap="off"></textarea>
         </div>
-        <div class="input-container">
-          <label for="imagescene-alt">Alt-Tag:</label>
-          <textarea class="generate" id="imagescene-alt" name="imagescene-alt" rows="1" spellcheck="false" wrap="off"></textarea>
-        </div>
         <div class="select-container">
           <div>
             <label for="imagescene-template">Stil:</label>
@@ -135,10 +131,16 @@
             <input type="number" id="imagescene-h" name="imagescene-h" min="0">
           </div>
         </div>
-        <sub>
-          * Breite und Höhe beziehen sich auf die Maße des Bildes. Entscheidend ist das Seitenverhältnis, sodass die Einheit nicht beachtet werden muss.
-          Wenn die URL des Bildes als Code-Schnipsel mit den entsprechenden Abmessungen (z.B. aus dem Editor in Moodle heraus) eingefügt wird, werden die Werte automatisch ermittelt.
-        </sub>
+        <div class="input-container">
+          <sub>
+            * Breite und Höhe beziehen sich auf die Maße des Bildes. Entscheidend ist das Seitenverhältnis, sodass die Einheit nicht beachtet werden muss.
+            Wenn die URL des Bildes als Code-Schnipsel mit den entsprechenden Abmessungen (z.B. aus dem Editor in Moodle heraus) eingefügt wird, werden die Werte automatisch ermittelt.
+          </sub>
+        </div>
+        <div class="input-container">
+          <label for="imagescene-alt">Alt-Tag:</label>
+          <textarea class="generate" id="imagescene-alt" name="imagescene-alt" rows="1" spellcheck="false" wrap="off"></textarea>
+        </div>
         <p>
           <input type="button" id="imagescene-generate" class="bigbutton" value='Szene generieren'>
         </p>
