@@ -67,9 +67,9 @@ listenEvents = () => {
   let shareButton = document.getElementById('imagescene-share');
   shareButton.addEventListener('click', sharePage);
 
-  // Check dimensions when textareas content was changed
+  // Check values when textareas content was changed
   let textarea = document.getElementById('imagescene-url');
-  textarea.addEventListener('input', getDimensions);
+  textarea.addEventListener('input', getValues);
 
   // Update status when width input was changes
   let width = document.getElementById('imagescene-w');
@@ -78,6 +78,10 @@ listenEvents = () => {
   // Update status when height input was changes
   let height = document.getElementById('imagescene-h');
   height.addEventListener('input', changeStatus);
+
+  // Update status when alt input was changes
+  let alt = document.getElementById('imagescene-alt');
+  alt.addEventListener('input', changeStatus);
 
   // Generate scene
   let generateButton = document.getElementById('imagescene-generate');
@@ -151,13 +155,13 @@ copyUrl = () => {
 
 
 /**
- * Get images dimensions
+ * Get images values
  * 
- * @function getDimensions
+ * @function getValues
  * @returns {void}
  *
  */
-getDimensions = () => {
+getValues = () => {
 
   // Change status
   changeStatus();
@@ -166,6 +170,7 @@ getDimensions = () => {
   let content = document.getElementById('imagescene-url').value;
   let wInput = document.getElementById('imagescene-w');
   let hInput = document.getElementById('imagescene-h');
+  let altInput = document.getElementById('imagescene-alt');
 
   // Search for width and height
   if (content.includes('width=') && content.includes('height=')) {
@@ -187,6 +192,19 @@ getDimensions = () => {
             hInput.value = "";
           }
       }
+  }
+
+  // Search for alt
+  if (content.includes('alt="')) {
+    const altStart = content.indexOf('alt="');
+    const altEnd = content.indexOf('"', altStart + 5);
+
+    if (altStart !== -1 && altEnd !== -1) {
+        const altValue = content.substring(altStart + 5, altEnd);
+
+        // Set the value of altInput
+        altInput.value = altValue;
+    }
   }
 
 };
@@ -221,6 +239,7 @@ generateScene = () => {
   let content = uInput.value;
   let wInput = document.getElementById('imagescene-w');
   let hInput = document.getElementById('imagescene-h');
+  let altInput = document.getElementById('imagescene-alt');
   let url;
 
   // Search for embeded url
@@ -282,12 +301,13 @@ generateScene = () => {
   let templatePath = '../templates/' + templateName + '.svg';
   // TODO: Fetch template content
   // TEMPORARY: Usage of a dummy code
-  let templateContent = '<svg id="example"><image width="$WIDTH" height="$HEIGHT" xlink:href="$URL" /></svg>';
+  let templateContent = '<svg id="example"><image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" /></svg>';
 
   // Replace placeholders
   templateContent = templateContent.replace(/\$URL/g, uInput.value);
   templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
   templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
+  templateContent = templateContent.replace(/\$ALT/g, altInput.value);
 
   // Put the generated code to the textarea
   document.getElementById('imagescene-result').value = templateContent;
