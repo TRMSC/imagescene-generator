@@ -59,6 +59,10 @@ listenEvents = () => {
   let clipboardButton = document.getElementById('imagescene-copy');
   clipboardButton.addEventListener('click', copyClipboard);
 
+  // Download SVG
+  let downloadButton = document.getElementById('imagescene-download');
+  downloadButton.addEventListener('click', downloadSvg);
+
 };
 
 
@@ -149,7 +153,7 @@ generateScene = () => {
   }
 
   if (!check) {
-    showInfo('Bitte alle Felder ausfüllen');
+    showInfo('Bitte alle Felder ausfüllen ✖️');
 
     setTimeout(() => {
       uInput.style.backgroundColor = ''; 
@@ -221,5 +225,41 @@ showInfo = (content) => {
     infobox.classList.remove("imagesceneConfirm");
     document.getSelection().removeAllRanges();
   }, 1400)
+
+};
+
+
+/**
+ * Download code as svg
+ * 
+ * @function downloadSvg
+ * @returns {void}
+ *
+ */
+downloadSvg = () => {
+
+  // Get values
+  let svg = document.getElementById('imagescene-result').value;
+  let template = document.getElementById('imagescene-template').value;
+
+  // Get date for filename
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); 
+  const day = String(date.getDate()).padStart(2, '0'); 
+  const currentDate = `${year}-${month}-${day}`;
+
+  // Handle blob
+  const blob = new Blob([svg], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+
+  // Download
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = currentDate + '-' + 'imagescene-' + template + '.svg';
+  a.click();
+
+  // Release url ressource
+  URL.revokeObjectURL(url);
 
 };
