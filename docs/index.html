@@ -68,6 +68,7 @@
         Der erzeugte SVG-Code kann jedoch auch in anderen digitalen Szenarien eingesetzt werden.
       </p>
     </div>
+
     <div class="part">
       <h2>
         Informationen zur Nutzung
@@ -89,6 +90,7 @@
         <a href="https://github.com/TRMSC/imagescene-generator" target="_blank"><input type="button" value="Imagescene Generator auf Github öffnen"></a>
       </p>
     </div>
+
     <div class="part">
       <h2>
         Bildszene erstellen
@@ -101,9 +103,10 @@
       <p>
         <b>Hinweis:</b> <u>Der Generator selbst greift nicht auf die URL zu, sondern verpackt diese zusammen mit dem animierten Overlay in einen neuen SVG-Code.</u>
       </p>
+
       <div class="smallpart">
         <h3>
-          Einstellungen
+          Generator
         </h3>
         <div class="input-container">
           <label for="imagescene-url">Alleinstehende Image-URL oder eingebunden als HTML-Schnipsel:</label>
@@ -133,9 +136,26 @@
           <input type="button" id="imagescene-generate" class="bigbutton" value='Szene generieren'>
         </p>
       </div>
+
+      <div class="smallpart">
+        <h3>
+          Ergebnis
+        </h3>
+        <div class="input-container">
+          <label for="imagescene-result">Code:</label>
+          <textarea id="imagescene-result" name="imagescene-result" rows="6" spellcheck="false" wrap="off" readonly></textarea>
+        </div>
+        <div>
+          <input id="imagescene-copy" type="button" value="In die Zwischenablage kopieren">
+          <input id="imagescene-download" type="button" value="Als SVG-Datei herunterladen">
+        </div>
+      </div>
+
     </div>
+
     <br>
     <hr style="margin-top: 20px;">
+
   </body>
   <footer style="bottom: auto; font-size: smaller;">
     <b>&copy;</b> <a target="_blank" href="https://github.com/TRMSC"> TRMSC</a> <span id="year"></span> &#x00B7; 
