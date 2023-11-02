@@ -1,5 +1,3 @@
-## This project is under development... 📣
-
 # Imagescene Generator
 
 Tool for generating a dynamic scene from an image by using its URL or by converting a local file to a data URI for an independet utilization.
