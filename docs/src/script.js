@@ -321,6 +321,7 @@ generateScene = () => {
   let templatePath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/' + templateName + '.svg';
 
   // Fetch template content
+  let templateContent;
   fetch(templatePath)
     .then(response => {
       // Check
@@ -329,9 +330,9 @@ generateScene = () => {
       }
       return response.text();
     })
-    .then(templateContent => {
+    .then(fetchedContent => {
       // Handle template content
-      templateContent = templateContent.replace(/\$URL/g, url);
+      templateContent = fetchedContent.replace(/\$URL/g, url);
       templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
       templateContent = templateContent.replace(/\$ALT/g, altInput.value);
@@ -344,10 +345,10 @@ generateScene = () => {
   // let templateContent = '<svg id="example"><image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" /></svg>';
 
   // Replace placeholders
-  templateContent = templateContent.replace(/\$URL/g, url);
-  templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
-  templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
-  templateContent = templateContent.replace(/\$ALT/g, altInput.value);
+  // templateContent = templateContent.replace(/\$URL/g, url);
+  // templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
+  // templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
+  // templateContent = templateContent.replace(/\$ALT/g, altInput.value);
 
   // Put the generated code to the textarea
   document.getElementById('imagescene-result').value = templateContent;
