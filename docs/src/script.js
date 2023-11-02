@@ -79,15 +79,18 @@ listenEvents = () => {
   dropzone.addEventListener('dragover', function (e) {
     e.preventDefault();
     dropzone.classList.add('dragover');
+    dropzone.style.backgroundColor = '#ab967554';
   });
 
   dropzone.addEventListener('dragleave', function () {
     dropzone.classList.remove('dragover');
+    dropzone.style.backgroundColor = '';
   });
 
   dropzone.addEventListener('drop', function (e) {
     e.preventDefault();
     dropzone.classList.remove('dragover');
+    dropzone.style.backgroundColor = '';
     const files = e.dataTransfer.files;
     handleFileSelect(files[0]);
   });
