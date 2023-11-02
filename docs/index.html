@@ -100,9 +100,9 @@
         Bildszene erstellen
       </h2>
       <p>
-        Um eine Bildszene zu erstellen, wird die URL zu einer Bilddatei benötigt. 
-        Es kann dabei auch ein Codeschnipsel verwendet werden, der eine solche URL beinhaltet.
-        Bei der Arbeit in Moodle kann im Editor somit ein Bild eingefügt werden und der gesamte, hierdurch erzeugte Code - oder nur die Bild-URL selbst - eingesetzt werden.
+        Um eine Bildszene zu erstellen, wird eine lokale Datei oder die URL zu einer Bilddatei benötigt. 
+        Es kann außerdem ein Codeschnipsel verwendet werden, der die URL zu einem Bild beinhaltet.
+        Bei der Arbeit in Moodle kann im Editor somit ein Bild eingefügt werden und der gesamte, hierdurch erzeugte Code eingesetzt werden.
       </p>
       <p>
         <u>Der Vorteil bei der Verwendung eines Codeschnipsels ist, dass vorhandene Werte für das Seitenverhältnis sowie für den Alt-Tag nach Möglichkeit automatisch übernommen werden.</u> ✨
@@ -153,12 +153,16 @@
         <div class="input-container">
           <sub>
             Breite und Höhe beziehen sich auf die Maße des verwendeten Bildes. Entscheidend ist das Seitenverhältnis, sodass die Einheit nicht beachtet werden muss.
-            Wenn die URL des Bildes als Code-Schnipsel mit den entsprechenden Abmessungen (z.B. aus dem Editor in Moodle heraus) eingefügt wird, werden die Werte automatisch ermittelt.
           </sub>
         </div>
         <div class="input-container">
-          <label for="imagescene-alt" class="miniheading">Optionaler Alt-Tag (empfohlen):</label>
+          <label for="imagescene-alt" class="miniheading">Alt-Tag:</label>
           <textarea class="generate" id="imagescene-alt" name="imagescene-alt" rows="1" spellcheck="false" wrap="off"></textarea>
+        </div>
+        <div class="input-container">
+          <sub>
+             Die Verwendung einer alternativen Bildbeschreibung ist optional, wird jedoch aus Gründen der Barrierefreiheit empfohlen.
+          </sub>
         </div>
         <p>
           <input type="button" id="imagescene-generate" class="bigbutton" value='Szene generieren'>
