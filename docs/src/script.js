@@ -333,6 +333,7 @@ generateScene = () => {
     })
     .then(fetchedContent => {
       // Handle template content
+      console.log(fetchedContent);
       templateContent = fetchedContent.replace(/\$URL/g, url);
       templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
