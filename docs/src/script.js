@@ -365,7 +365,7 @@ generateScene = () => {
 
 
   // Copy code to the clipboard
-  copyClipboard();
+  //copyClipboard();
 
 };
 
