@@ -317,7 +317,8 @@ generateScene = () => {
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
-  let templatePath = '../templates/' + templateName + '.svg';
+  //let templatePath = '../templates/' + templateName + '.svg';
+  let templatePath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/' + templateName + '.svg';
 
   // Fetch template content
   fetch(templatePath)
@@ -330,6 +331,7 @@ generateScene = () => {
     })
     .then(templateContent => {
       // Handle template content
+      let templateContent = templateContent;
       templateContent = templateContent.replace(/\$URL/g, url);
       templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
