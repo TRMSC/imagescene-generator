@@ -319,7 +319,6 @@ generateScene = () => {
   let templateName = document.getElementById('imagescene-template').value;
   //let templatePath = '../templates/' + templateName + '.raw';
   let templatePath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/' + templateName + '.raw';
-  console.log(templatePath);
 
   // Fetch template content
   let templateContent = '';
@@ -333,15 +332,10 @@ generateScene = () => {
     })
     .then(fetchedContent => {
       // Handle template content
-      console.log(fetchedContent);
       templateContent = fetchedContent.replace(/\$URL/g, url);
-      console.log(templateContent);
       templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
-      console.log(templateContent);
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
-      console.log(templateContent);
       templateContent = templateContent.replace(/\$ALT/g, altInput.value);
-      console.log(templateContent);
 
       // Put the generated code to the textarea
       document.getElementById('imagescene-result').value = templateContent;
