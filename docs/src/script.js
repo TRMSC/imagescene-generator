@@ -322,7 +322,7 @@ generateScene = () => {
   console.log(templatePath);
 
   // Fetch template content
-  let templateContent;
+  let templateContent = '';
   fetch(templatePath)
     .then(response => {
       // Check
