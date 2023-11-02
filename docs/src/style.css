@@ -95,6 +95,11 @@ select {
 #dropzone:hover {
     background-color: #ab967554;
 }
+#imagescene-url,
+#imagescene-result {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
 #imagescene-result {
     font-size: 11pt;
     background-color: #a1b1aa1a;
