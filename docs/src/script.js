@@ -358,12 +358,9 @@ generateScene = () => {
 
   // Put the generated code to the textarea
   //document.getElementById('imagescene-result').value = templateContent;
-  // Funktion zum Escapen von HTML-Sonderzeichen
   function escapeHtml(html) {
     return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
-
-  // templateContent escapen und in Textarea einfügen
   document.getElementById('imagescene-result').value = escapeHtml(templateContent);
 
 
