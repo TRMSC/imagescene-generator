@@ -123,7 +123,7 @@ listenEvents = () => {
 
   // Download SVG
   let downloadButton = document.getElementById('imagescene-download');
-  downloadButton.addEventListener('click', downloadSvg);
+  downloadButton.addEventListener('click', downloadHtml);
 
 };
 
@@ -418,38 +418,35 @@ showInfo = (content) => {
 
 
 /**
- * Download code as svg
+ * Download code as HTML
  * 
- * @function downloadSvg
+ * @function downloadHtml
  * @returns {void}
- *
  */
-downloadSvg = () => {
-
+downloadHtml = () => {
   // Get values
-  let svg = document.getElementById('imagescene-result').value;
+  let html = document.getElementById('imagescene-result').value;
   let template = document.getElementById('imagescene-template').value;
 
   // Get date for filename
   const date = new Date();
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); 
-  const day = String(date.getDate()).padStart(2, '0'); 
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
   const currentDate = `${year}-${month}-${day}`;
 
   // Handle blob
-  const blob = new Blob([svg], { type: 'image/svg+xml' });
+  const blob = new Blob([html], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
 
   // Download
   const a = document.createElement('a');
   a.href = url;
-  a.download = currentDate + '-' + 'imagescene-' + template + '.svg';
+  a.download = currentDate + '-' + 'imagescene-' + template + '.html';
   a.click();
 
-  // Release url ressource
+  // Release URL resource
   URL.revokeObjectURL(url);
-
 };
 
 
