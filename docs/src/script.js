@@ -121,7 +121,7 @@ listenEvents = () => {
   let clipboardButton = document.getElementById('imagescene-copy');
   clipboardButton.addEventListener('click', copyClipboard);
 
-  // Download SVG
+  // Download
   let downloadButton = document.getElementById('imagescene-download');
   downloadButton.addEventListener('click', downloadHtml);
 
