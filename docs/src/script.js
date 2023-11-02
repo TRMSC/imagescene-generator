@@ -64,8 +64,10 @@ addYear = () => {
 listenEvents = () => {
 
   // Share page
-  let shareButton = document.getElementById('imagescene-share');
-  shareButton.addEventListener('click', sharePage);
+  let shareButtons = document.getElementsByClassName('imagescene-share');
+  for (let i = 0; i < shareButtons.length; i++) {
+    shareButtons[i].addEventListener('click', sharePage);
+  }
 
   // Filepicker
   let imageInput = document.getElementById('imageInput');
