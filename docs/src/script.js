@@ -335,9 +335,13 @@ generateScene = () => {
       // Handle template content
       console.log(fetchedContent);
       templateContent = fetchedContent.replace(/\$URL/g, url);
+      console.log(templateContent);
       templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
+      console.log(templateContent);
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
+      console.log(templateContent);
       templateContent = templateContent.replace(/\$ALT/g, altInput.value);
+      console.log(templateContent);
     })
     .catch(error => {
       console.error('Fetch error:', error);
