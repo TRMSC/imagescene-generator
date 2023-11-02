@@ -291,7 +291,7 @@ generateScene = () => {
   }
 
   if (!check) {
-    showInfo('Bitte alle Felder ausfüllen ✖️');
+    showInfo('Bitte alle erforderlichen Felder ausfüllen ✖️');
 
     setTimeout(() => {
       uInput.style.backgroundColor = ''; 
