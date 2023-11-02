@@ -67,6 +67,31 @@ listenEvents = () => {
   let shareButton = document.getElementById('imagescene-share');
   shareButton.addEventListener('click', sharePage);
 
+  // Filepicker
+  let imageInput = document.getElementById('imageInput');
+  imageInput.addEventListener('change', function (event) {
+    const selectedFile = event.target.files[0];
+    handleFileSelect(selectedFile);
+  });
+
+  // Drag & Drop
+  let dropzone = document.getElementById('dropzone');
+  dropzone.addEventListener('dragover', function (e) {
+    e.preventDefault();
+    dropzone.classList.add('dragover');
+  });
+
+  dropzone.addEventListener('dragleave', function () {
+    dropzone.classList.remove('dragover');
+  });
+
+  dropzone.addEventListener('drop', function (e) {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    const files = e.dataTransfer.files;
+    handleFileSelect(files[0]);
+  });
+
   // Check values when textareas content was changed
   let textarea = document.getElementById('imagescene-url');
   textarea.addEventListener('input', getValues);
@@ -408,3 +433,62 @@ downloadSvg = () => {
   URL.revokeObjectURL(url);
 
 };
+
+
+/**
+ * Handle file select when added via button or dropzone
+ * 
+ * @function handleFileSelect
+ * @param {File} file - The file added by user
+ * @returns {void}
+ */
+handleFileSelect = (file) => {
+
+  // Check if a file was provided
+  if (file) {
+
+    const reader = new FileReader();
+
+    reader.onload = function () {
+
+      // Convert image
+      const dataUri = reader.result;
+
+      // Handle values
+      const img = new Image();
+      img.src = dataUri;
+
+      img.onload = function () {
+
+        // Save values
+        const originalWidth = img.width;
+        const originalHeight = img.height;
+        
+        // Transmit values
+        let width = document.getElementById('imagescene-w');
+        width.value = originalWidth;
+        let height = document.getElementById('imagescene-h');
+        height.value = originalHeight;
+        
+        // Set Data URI directly to the textarea
+        let textarea = document.getElementById('imagescene-url');
+        textarea.value = dataUri;
+        
+        console.log('Breite: ' + originalWidth + 'px');
+        console.log('Höhe: ' + originalHeight + 'px');
+        console.log('Data URI des ausgewählten Bildes:', dataUri);
+        
+      };
+
+    };
+
+    reader.readAsDataURL(file);
+
+  }
+
+};
+
+
+
+
+
