@@ -318,7 +318,29 @@ generateScene = () => {
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
   let templatePath = '../templates/' + templateName + '.svg';
-  // TODO: Fetch template content
+
+  /*
+  // Fetch template content
+  fetch(templatePath)
+    .then(response => {
+      // Check
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(templateContent => {
+      // Handle template content
+      templateContent = templateContent.replace(/\$URL/g, url);
+      templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
+      templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
+      templateContent = templateContent.replace(/\$ALT/g, altInput.value);
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
+  */
+
   // TEMPORARY: Usage of a dummy code
   let templateContent = '<svg id="example"><image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" /></svg>';
 
