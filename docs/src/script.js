@@ -331,7 +331,6 @@ generateScene = () => {
     })
     .then(templateContent => {
       // Handle template content
-      let templateContent = templateContent;
       templateContent = templateContent.replace(/\$URL/g, url);
       templateContent = templateContent.replace(/\$WIDTH/g, wInput.value);
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
