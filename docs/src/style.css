@@ -72,7 +72,8 @@ input[type="button"]:hover {
     display: flex;
     flex-direction: row;
     gap: 1em;
-    margin-bottom: 0.7em;
+    /*margin-bottom: 0.7em;*/
+    margin: 20px 0px 10px 0px;
 }
 @media (max-width: 1000px) {
     .select-container {
@@ -84,6 +85,9 @@ input[type="button"]:hover {
 }
 select {
     font-size: 12pt;
+}
+.miniheading {
+    margin: 10px 0px 5px 0px;
 }
 #dropzone {
     border: 2px dashed #695753;
