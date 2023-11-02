@@ -1,10 +1,10 @@
 # Imagescene Generator
 
-Tool for generating a dynamic scene from an image url.
+Tool for generating a dynamic scene from an image by using its URL or by converting a local file to a data URI for an independet utilization.
 
 ## Usage
 
-Visit the [project page](https://trmsc.github.io/imagescene-generator/) for creating imagescenes online or download the repository for an offline usage.
+Visit the [project page](https://trmsc.github.io/imagescene-generator/) for creating imagescenes and for getting more information (german).
 
 ## Licence
 
