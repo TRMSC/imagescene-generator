@@ -85,6 +85,16 @@ input[type="button"]:hover {
 select {
     font-size: 12pt;
 }
+#dropzone {
+    border: 2px dashed #695753;
+    width: fit-content;
+    padding: 10px;
+    background-color: #ffffffa6;
+    cursor: pointer;
+}
+#dropzone:hover {
+    background-color: #ab967554;
+}
 #imagescene-result {
     font-size: 11pt;
     background-color: #a1b1aa1a;
