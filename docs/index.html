@@ -114,13 +114,19 @@
         </h3>
 
         <div class="input-container">
-          <span>Lokale Bilddatei als DataURI verarbeiten:</span>
+          <span class="miniheading">Lokale Bilddatei als DataURI verarbeiten:</span>
           <label for="imageInput" id="dropzone">Bild auswählen oder ablegen</label>
           <input type="file" id="imageInput" accept="image/*" style="display: none;">
         </div>
-
         <div class="input-container">
-          <label for="imagescene-url">Alleinstehende Image-URL oder eingebunden als HTML-Schnipsel:</label>
+          <sub>
+            Mithilfe von DataURIs können Bilder in Text umgewandelt werden. 
+            Mit zunehmender Bildgröße kann die erzeugte Buchstabenfolge schnell umfangreich sowie unübersichtlich werden und es können zudem Probleme in der Darstellung und Verarbeitung auftreten.
+            Es kann sich somit anbieten, anstelle der Umwandlung lokaler Dateien mit Bildadressen zu arbeiten.
+          </sub>
+        </div>
+        <div class="input-container">
+          <label for="imagescene-url" class="miniheading">Alleinstehende Image-URL oder eingebunden als HTML-Schnipsel:</label>
           <textarea class="generate" id="imagescene-url" name="imagescene-url" rows="3" spellcheck="false" wrap="off"></textarea>
         </div>
         <div class="input-container">
@@ -130,7 +136,7 @@
         </div>
         <div class="select-container">
           <div>
-            <label for="imagescene-template">Stil:</label>
+            <label for="imagescene-template" class="miniheading">Stil:</label>
             <select id="imagescene-template" name="imagescene-template">
               <option value="indian-summer">Indian Summer</option>
             </select>
@@ -151,7 +157,7 @@
           </sub>
         </div>
         <div class="input-container">
-          <label for="imagescene-alt">Optionaler Alt-Tag (empfohlen):</label>
+          <label for="imagescene-alt" class="miniheading">Optionaler Alt-Tag (empfohlen):</label>
           <textarea class="generate" id="imagescene-alt" name="imagescene-alt" rows="1" spellcheck="false" wrap="off"></textarea>
         </div>
         <p>
@@ -164,7 +170,7 @@
           Ergebnis
         </h3>
         <div class="input-container">
-          <label for="imagescene-result">Code:</label>
+          <label for="imagescene-result" class="miniheading">Code:</label>
           <textarea id="imagescene-result" name="imagescene-result" rows="6" spellcheck="false" wrap="off" readonly></textarea>
         </div>
         <div>
