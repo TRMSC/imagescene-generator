@@ -342,6 +342,12 @@ generateScene = () => {
       console.log(templateContent);
       templateContent = templateContent.replace(/\$ALT/g, altInput.value);
       console.log(templateContent);
+
+      // Put the generated code to the textarea
+      document.getElementById('imagescene-result').value = templateContent;
+
+      // Copy code to the clipboard
+      copyClipboard();
     })
     .catch(error => {
       console.error('Fetch error:', error);
@@ -358,11 +364,6 @@ generateScene = () => {
 
   // Put the generated code to the textarea
   //document.getElementById('imagescene-result').value = templateContent;
-  function escapeHtml(html) {
-    return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  }
-  document.getElementById('imagescene-result').value = escapeHtml(templateContent);
-
 
   // Copy code to the clipboard
   //copyClipboard();
