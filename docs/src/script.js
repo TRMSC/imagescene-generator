@@ -319,7 +319,6 @@ generateScene = () => {
   let templateName = document.getElementById('imagescene-template').value;
   let templatePath = '../templates/' + templateName + '.svg';
 
-  /*
   // Fetch template content
   fetch(templatePath)
     .then(response => {
@@ -339,10 +338,9 @@ generateScene = () => {
     .catch(error => {
       console.error('Fetch error:', error);
     });
-  */
 
   // TEMPORARY: Usage of a dummy code
-  let templateContent = '<svg id="example"><image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" /></svg>';
+  // let templateContent = '<svg id="example"><image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" /></svg>';
 
   // Replace placeholders
   templateContent = templateContent.replace(/\$URL/g, url);
