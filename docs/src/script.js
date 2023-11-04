@@ -484,10 +484,6 @@ handleFileSelect = (file) => {
         let textarea = document.getElementById('imagescene-url');
         textarea.value = dataUri;
         
-        console.log('Breite: ' + originalWidth + 'px');
-        console.log('Höhe: ' + originalHeight + 'px');
-        console.log('Data URI des ausgewählten Bildes:', dataUri);
-        
       };
 
     };
