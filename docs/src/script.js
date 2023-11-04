@@ -129,62 +129,6 @@ listenEvents = () => {
 
 
 /**
- * Share page by using the share api
- * 
- * @async
- * @function sharePage
- * @throws {error} When the share api isn't available or the share fails
- * 
- */
-sharePage = async () => {
-
-  if (navigator.share) {
-    try {
-      await navigator.share(shareData);
-      console.log('Shared successfully');
-    } catch (err) {
-      console.log(`Error: ${err}`);
-    }
-  } else {
-      copyUrl();
-  }
-  
-};
-
-
-/**
- * Copy URL to clipboard
- * 
- * @function copyUrl
- * @returns {void}
- * 
- */
-copyUrl = () => {
-
-  // Handle URL
-  const textArea = document.createElement('textarea');
-  textArea.value = shareData.url;
-  document.body.appendChild(textArea);
-  textArea.select();
-
-  // Copy or throw an error
-  try {
-    document.execCommand('copy');
-    alert(
-      'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
-      'Die URL der Projektseite wurde daher zum Teilen in die Zwischenablage kopiert. ✔️'
-    );
-  } catch (err) {
-    console.error('Fehler beim Kopieren in die Zwischenablage: ', err);
-  }
-
-  // Entfernen Sie das Textfeld aus dem Dokument
-  document.body.removeChild(textArea);
-  
-};
-
-
-/**
  * Get images values
  * 
  * @function getValues
@@ -371,6 +315,62 @@ scrollResult = () => {
     behavior: 'smooth'
   });
 
+};
+
+
+/**
+ * Share page by using the share api
+ * 
+ * @async
+ * @function sharePage
+ * @throws {error} When the share api isn't available or the share fails
+ * 
+ */
+sharePage = async () => {
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      console.log('Shared successfully');
+    } catch (err) {
+      console.log(`Error: ${err}`);
+    }
+  } else {
+      copyUrl();
+  }
+  
+};
+
+
+/**
+ * Copy URL to clipboard
+ * 
+ * @function copyUrl
+ * @returns {void}
+ * 
+ */
+copyUrl = () => {
+
+  // Handle URL
+  const textArea = document.createElement('textarea');
+  textArea.value = shareData.url;
+  document.body.appendChild(textArea);
+  textArea.select();
+
+  // Copy or throw an error
+  try {
+    document.execCommand('copy');
+    alert(
+      'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
+      'Die URL der Projektseite wurde daher zum Teilen in die Zwischenablage kopiert. ✔️'
+    );
+  } catch (err) {
+    console.error('Fehler beim Kopieren in die Zwischenablage: ', err);
+  }
+
+  // Entfernen Sie das Textfeld aus dem Dokument
+  document.body.removeChild(textArea);
+  
 };
 
 
