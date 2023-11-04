@@ -129,62 +129,6 @@ listenEvents = () => {
 
 
 /**
- * Share page by using the share api
- * 
- * @async
- * @function sharePage
- * @throws {error} When the share api isn't available or the share fails
- * 
- */
-sharePage = async () => {
-
-  if (navigator.share) {
-    try {
-      await navigator.share(shareData);
-      console.log('Shared successfully');
-    } catch (err) {
-      console.log(`Error: ${err}`);
-    }
-  } else {
-      copyUrl();
-  }
-  
-};
-
-
-/**
- * Copy URL to clipboard
- * 
- * @function copyUrl
- * @returns {void}
- * 
- */
-copyUrl = () => {
-
-  // Handle URL
-  const textArea = document.createElement('textarea');
-  textArea.value = shareData.url;
-  document.body.appendChild(textArea);
-  textArea.select();
-
-  // Copy or throw an error
-  try {
-    document.execCommand('copy');
-    alert(
-      'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
-      'Die URL der Projektseite wurde daher zum Teilen in die Zwischenablage kopiert. ✔️'
-    );
-  } catch (err) {
-    console.error('Fehler beim Kopieren in die Zwischenablage: ', err);
-  }
-
-  // Entfernen Sie das Textfeld aus dem Dokument
-  document.body.removeChild(textArea);
-  
-};
-
-
-/**
  * Get images values
  * 
  * @function getValues
@@ -375,21 +319,72 @@ scrollResult = () => {
 
 
 /**
+ * Share page by using the share api
+ * 
+ * @async
+ * @function sharePage
+ * @throws {error} When the share api isn't available or the share fails
+ * 
+ */
+sharePage = async () => {
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      console.log('Shared successfully');
+    } catch (err) {
+      console.log(`Error: ${err}`);
+    }
+  } else {
+    alert(
+      'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
+      'Die URL der Projektseite wird daher zum Teilen in die Zwischenablage kopiert. ✔️'
+    );
+    copyClipboard('share');
+  }
+  
+};
+
+
+/**
  * Copy to clipboard
  * 
  * @function copyClipboard
+ * @param {string} target - Content to copy
  * @returns {void}
  *
  */
-copyClipboard = () => {
+copyClipboard = (target) => {
 
-  // Copy content
-  document.getElementById('imagescene-result').select();
-  document.execCommand('copy');
+  // Check if the url for sharing or the result should be copied to clipboard
+  let textToCopy = target === 'share' ? shareData.url : document.getElementById('imagescene-result').value;
 
-  // Call infobox
-  let content = 'In die Zwischenablage kopiert ✔';
-  showInfo(content);
+  if ('clipboard' in navigator) {
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+        // Success
+        let content = 'In die Zwischenablage kopiert ✔';
+        showInfo(content);
+      })
+      .catch(err => {
+        // Error
+        console.error('copy to clipboard error: ', err);
+        let content = 'Fehler beim Kopieren in die Zwischenablage ✖️';
+        showInfo(content);
+      });
+  } else {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = textToCopy;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+
+    // Call infobox
+    let content = 'In die Zwischenablage kopiert ✔';
+    showInfo(content);
+  }
 
 };
 
@@ -488,10 +483,6 @@ handleFileSelect = (file) => {
         // Set Data URI directly to the textarea
         let textarea = document.getElementById('imagescene-url');
         textarea.value = dataUri;
-        
-        console.log('Breite: ' + originalWidth + 'px');
-        console.log('Höhe: ' + originalHeight + 'px');
-        console.log('Data URI des ausgewählten Bildes:', dataUri);
         
       };
 
