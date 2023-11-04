@@ -336,7 +336,11 @@ sharePage = async () => {
       console.log(`Error: ${err}`);
     }
   } else {
-      copyUrl();
+    alert(
+      'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
+      'Die URL der Projektseite wird daher zum Teilen in die Zwischenablage kopiert. ✔️'
+    );
+    copyClipboard('share');
   }
   
 };
@@ -378,12 +382,14 @@ copyUrl = () => {
  * Copy to clipboard
  * 
  * @function copyClipboard
+ * @param {string} target - Content to copy
  * @returns {void}
  *
  */
-copyClipboard = () => {
+copyClipboard = (target) => {
 
-  let textToCopy = document.getElementById('imagescene-result').value;
+  // Check if the url for sharing or the result should be copied to clipboard
+  let textToCopy = target === 'share' ? shareData.url : document.getElementById('imagescene-result').value;
 
   if ('clipboard' in navigator) {
     navigator.clipboard.writeText(textToCopy)
