@@ -403,11 +403,13 @@ showInfo = (content) => {
   infobox.textContent = content;
   setTimeout(function () {
     infobox.classList.add("imagesceneConfirm");
+    infobox.style.visibility = '';
   }, 50)
   setTimeout(function () {
     infobox.classList.remove("imagesceneConfirm");
     document.getSelection().removeAllRanges();
   }, 1400)
+  infobox.style.visibility = 'hidden';
 
 };
 
