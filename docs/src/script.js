@@ -383,13 +383,34 @@ scrollResult = () => {
  */
 copyClipboard = () => {
 
-  // Copy content
-  document.getElementById('imagescene-result').select();
-  document.execCommand('copy');
+  let textToCopy = document.getElementById('imagescene-result').value;
 
-  // Call infobox
-  let content = 'In die Zwischenablage kopiert ✔';
-  showInfo(content);
+  if ('clipboard' in navigator) {
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+        // Success
+        let content = 'In die Zwischenablage kopiert ✔';
+        showInfo(content);
+      })
+      .catch(err => {
+        // Error
+        console.error('copy to clipboard error: ', err);
+        let content = 'Fehler beim Kopieren in die Zwischenablage ✖️';
+        showInfo(content);
+      });
+  } else {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = textToCopy;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+
+    // Call infobox
+    let content = 'In die Zwischenablage kopiert ✔';
+    showInfo(content);
+  }
 
 };
 
