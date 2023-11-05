@@ -273,8 +273,7 @@ generateScene = () => {
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
-  //let templatePath = '../templates/' + templateName + '.raw';
-  let templatePath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/' + templateName + '.raw';
+  let templatePath = '../templates/' + templateName + '.raw';
 
   // Fetch template content
   let templateContent = '';
