@@ -280,7 +280,6 @@ generateScene = () => {
   const relativePath = '../templates/';
   let templatePath = baseUrl.includes('github.io') ? originPath : relativePath;
   templatePath = templatePath + templateName + '.raw';
-  console.log(templatePath);
 
   // Fetch template content
   let templateContent = '';
