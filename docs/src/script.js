@@ -125,9 +125,17 @@ listenEvents = () => {
   let clipboardButton = document.getElementById('imagescene-copy');
   clipboardButton.addEventListener('click', copyClipboard);
 
-  // Download
-  let downloadButton = document.getElementById('imagescene-download');
-  downloadButton.addEventListener('click', downloadHtml);
+  // Download HTML
+  let downloadHtml = document.getElementById('imagescene-download-html');
+  downloadHtml.addEventListener('click', function() {
+    downloadFile('html');
+  });
+
+  // Download SVG
+  let downloadSvg = document.getElementById('imagescene-download-svg');
+  downloadSvg.addEventListener('click', function() {
+    downloadFile('svg');
+  });
 
 };
 
@@ -421,10 +429,11 @@ showInfo = (content) => {
 /**
  * Download code as HTML
  * 
- * @function downloadHtml
+ * @function downloadFile
+ * @param {string} type - Includes the file type (html or svg)
  * @returns {void}
  */
-downloadHtml = () => {
+downloadFile = (type) => {
   // Get values
   let html = document.getElementById('imagescene-result').value;
   let template = document.getElementById('imagescene-template').value;
@@ -436,6 +445,9 @@ downloadHtml = () => {
   const day = String(date.getDate()).padStart(2, '0');
   const currentDate = `${year}-${month}-${day}`;
 
+  // Add XML declaration for SVG type
+  if (type === 'svg') html = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${html}`;
+
   // Handle blob
   const blob = new Blob([html], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
@@ -443,11 +455,12 @@ downloadHtml = () => {
   // Download
   const a = document.createElement('a');
   a.href = url;
-  a.download = currentDate + '-' + 'imagescene-' + template + '.html';
+  a.download = currentDate + '-' + 'imagescene-' + template + '.' + type;
   a.click();
 
   // Release URL resource
   URL.revokeObjectURL(url);
+  
 };
 
 
