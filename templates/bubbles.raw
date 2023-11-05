@@ -60,5 +60,5 @@
         <animate attributeName="cy" values="85%;0%" dur="12s" begin="5s" repeatCount="indefinite" />
         <animate attributeName="r" values="22;18;14;10;4;0;0;0" dur="12s" begin="5s" repeatCount="indefinite" />
     </circle>
-</g>
+  </g>
 </svg>
