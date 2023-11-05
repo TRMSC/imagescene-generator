@@ -111,6 +111,7 @@ select {
 }
 #imagescene-status {
     cursor: help;
+    white-space: nowrap;
 }
 #imagescene-info {
     padding: 10px;
