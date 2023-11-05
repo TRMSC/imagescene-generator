@@ -28,6 +28,10 @@ const shareData = {
  */
 window.onload = function() {
 
+  // Hide elements
+  let infobox = document.getElementById("imagescene-info");
+  infobox.style.visibility = 'hidden';
+
   // Call functions
   addYear();
   listenEvents();
