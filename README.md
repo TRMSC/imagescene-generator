@@ -10,4 +10,4 @@ __This tool is in a beta state.__ The general functions are largely stable but t
 
 ## Licence
 
-Imagescene Generator is [mainly licenced under GNU GPL 3.0](LICENSE). For some open education ressources it could be usefull to have a creative common licence. So you have the opportunity for a two way compatibility by using the [CC-BY-SA 4.0 DE](https://creativecommons.org/licenses/by-sa/4.0/deed.de).
+Imagescene Generator is mainly licenced under [GNU GPL 3.0](LICENSE). For some open education ressources it could be usefull to have a creative common licence. So you have the opportunity for a two way compatibility by using the [CC-BY-SA 4.0 DE](https://creativecommons.org/licenses/by-sa/4.0/deed.de).
