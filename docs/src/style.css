@@ -117,7 +117,7 @@ footer {
 }
 @media (max-width: 1200px) {
     html {
-        margin: 70px 80px;
+        margin: 65px 80px;
     }
     svg {
         border-radius: 9px;
