@@ -10,21 +10,6 @@ html {
     font-size: 12pt;
     margin: 60px 250px;
 }
-@media (max-width: 1000px) {
-    html {
-        margin: 40px 80px;
-    }
-}
-@media (max-width: 800px) {
-    html {
-        margin: 30px 50px;
-    }
-}
-@media (max-width: 480px) {
-    html {
-        margin: 20px 25px;
-    }
-}
 svg {
     border-radius: 10px;
     box-shadow: 8px -8px 20px 2px #d9d9d9;
@@ -75,11 +60,6 @@ input[type="button"]:hover {
     gap: 1em;
     /*margin-bottom: 0.7em;*/
     margin: 20px 0px 10px 0px;
-}
-@media (max-width: 1000px) {
-    .select-container {
-        flex-direction: column;
-    }
 }
 .select-container input {
     width: 80px;
@@ -134,4 +114,22 @@ footer {
     bottom: auto;
     font-size: smaller;
     text-align: right;
+}
+@media (max-width: 1000px) {
+    html {
+        margin: 40px 80px;
+    }
+}
+@media (max-width: 800px) {
+    html {
+        margin: 30px 50px;
+    }
+    .select-container {
+        flex-direction: column;
+    }
+}
+@media (max-width: 480px) {
+    html {
+        margin: 20px 25px;
+    }
 }
