@@ -141,4 +141,12 @@ footer {
     svg {
         border-radius: 6px;
     }
+    #result-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .s-w-100 {
+        width: 100%;
+    }
 }
