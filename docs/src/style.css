@@ -115,12 +115,12 @@ footer {
     font-size: smaller;
     text-align: right;
 }
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     html {
         margin: 40px 80px;
     }
 }
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     html {
         margin: 30px 50px;
     }
@@ -128,7 +128,7 @@ footer {
         flex-direction: column;
     }
 }
-@media (max-width: 480px) {
+@media (max-width: 568px) {
     html {
         margin: 20px 25px;
     }
