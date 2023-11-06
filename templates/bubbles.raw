@@ -1,0 +1,64 @@
+<!-- Created with the Imagescene Generator - Copyright (C) 2023, TRMSC - https://trmsc.github.io/imagescene-generator/ -->
+
+<svg class="ic-banner" width="100%" viewBox="0 0 $WIDTH $HEIGHT" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+
+  <g class="hero-image">
+    <image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" />
+  </g>
+
+  <g class="ic-bubbles">
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+      <animate attributeName="cx" values="30%;32%;30%;32%;30%;32%;30%;32%" dur="8s" begin="0s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="950%;0%" dur="8s" begin="0s" repeatCount="indefinite" />
+      <animate attributeName="r" values="20;15;10;5;2;0;0;0" dur="8s" begin="0s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+      <animate attributeName="cx" values="62%;60%;63%;60%;63%;68%;62%;69%" dur="10s" begin="2s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="90%;0%" dur="10s" begin="2s" repeatCount="indefinite" />
+      <animate attributeName="r" values="18;16;15;10;2;0;0;0" dur="10s" begin="2s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+        <animate attributeName="cx" values="80%;82%;80%;82%;80%;82%;80%;82%" dur="9s" begin="6s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="90%;0%" dur="9s" begin="6s" repeatCount="indefinite" />
+        <animate attributeName="r" values="24;22;21;20;10;0;0;0" dur="9s" begin="6s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+      <animate attributeName="cx" values="40%;42%;40%;42%;40%;44%;46%;48%" dur="6s" begin="2.5s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="50%;0%" dur="6s" begin="2.5s" repeatCount="indefinite" />
+      <animate attributeName="r" values="10;5;0" dur="6s" begin="2.5s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+        <animate attributeName="cx" values="50%;57%;55%;57%;55%;57%;55%;57%" dur="8s" begin="4.5s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="85%;0%" dur="8s" begin="4.5s" repeatCount="indefinite" />
+        <animate attributeName="r" values="15;12;10;8;4;0;0;0" dur="8s" begin="4.5s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+        <animate attributeName="cx" values="5%;7%;5%;7%;5%;7%;5%;7%" dur="8s" begin="1s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="85%;0%" dur="8s" begin="1s" repeatCount="indefinite" />
+        <animate attributeName="r" values="15;12;10;8;4;0;0" dur="8s" begin="1s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+        <animate attributeName="cx" values="40%;42%;40%;42%;40%;42%;40%;42%" dur="11s" begin="3s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="90%;0%" dur="11s" begin="3s" repeatCount="indefinite" />
+        <animate attributeName="r" values="25;22;20;15;7;0" dur="11s" begin="3s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+        <animate attributeName="cx" values="70%;72%;70%;72%;70%;72%;70%;72%" dur="12s" begin="4s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="95%;0%" dur="12s" begin="4s" repeatCount="indefinite" />
+        <animate attributeName="r" values="25;22;20;20;8;0;0;0" dur="12s" begin="4s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0%" cy="0%" r="0" style="fill:#d8d8d8; fill-opacity:0.4128;">
+        <animate attributeName="cx" values="15%;17%;15%;17%;15%;17%;15%;17%" dur="12s" begin="5s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="85%;0%" dur="12s" begin="5s" repeatCount="indefinite" />
+        <animate attributeName="r" values="22;18;14;10;4;0;0;0" dur="12s" begin="5s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg>
