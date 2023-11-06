@@ -8,7 +8,7 @@
 html {
     font-family: Verdana, Geneva, sans-serif, Tahoma;
     font-size: 12pt;
-    margin: 60px 250px;
+    margin: 100px 250px;
 }
 svg {
     border-radius: 10px;
@@ -117,12 +117,18 @@ footer {
 }
 @media (max-width: 1200px) {
     html {
-        margin: 40px 80px;
+        margin: 70px 80px;
+    }
+    svg {
+        border-radius: 9px;
     }
 }
 @media (max-width: 768px) {
     html {
-        margin: 30px 50px;
+        margin: 45px 50px;
+    }
+    svg {
+        border-radius: 8px;
     }
     .select-container {
         flex-direction: column;
@@ -130,6 +136,9 @@ footer {
 }
 @media (max-width: 568px) {
     html {
-        margin: 20px 25px;
+        margin: 22px 25px;
+    }
+    svg {
+        border-radius: 6px;
     }
 }
