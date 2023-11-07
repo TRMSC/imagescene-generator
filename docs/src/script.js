@@ -105,6 +105,10 @@ listenEvents = () => {
   let textarea = document.getElementById('imagescene-url');
   textarea.addEventListener('input', getValues);
 
+  // Update status when template was changed
+  let templateSelect = document.getElementById('imagescene-template');
+  templateSelect.addEventListener('change', changeStatus); 
+
   // Update status when width input was changes
   let width = document.getElementById('imagescene-w');
   width.addEventListener('input', changeStatus);
