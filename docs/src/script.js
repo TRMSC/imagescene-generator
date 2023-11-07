@@ -112,7 +112,10 @@ listenEvents = () => {
 
   // Update status when template was changed
   let templateSelect = document.getElementById('imagescene-template');
-  templateSelect.addEventListener('change', changeStatus);
+  templateSelect.addEventListener('change', function () {
+    selectTemplates();
+    changeStatus();
+  });
 
   // Update status when width input was changes
   let width = document.getElementById('imagescene-w');
@@ -226,7 +229,6 @@ changeStatus = () => {
  * 
  * @function loadTemplates
  * @returns {void}
- * @TODO Building path is actually a duplicate within the script
  *
  */
 loadTemplates = () => {
@@ -237,25 +239,56 @@ loadTemplates = () => {
   const relativePath = '../templates/';
   templatesPath = baseUrl.includes('github.io') ? originPath : relativePath;
   let json = templatesPath + 'templates.json';
-  console.log(json);
 
   // Fetch data
   fetch(json)
     .then(response => response.json())
     .then(data => {
+      // Handle template data
       templatesData = data.templates;
-      const templatesSelect = document.getElementById('imagescene-template');
+      let templatesSelect = document.getElementById('imagescene-template');
 
+      // Create options
       templatesData.forEach((template, index) => {
         const option = document.createElement('option');
         option.textContent = template.name;
         option.value = template.filename;
         templatesSelect.appendChild(option);
       });
+
+      // Handle template selection
+      selectTemplates();
+
     })
     .catch(error => {
       console.error('Error when loading templates.json: ' + error);
     });
+
+};
+
+
+/**
+ * Handle template selection
+ * 
+ * @function selectTemplates
+ * @returns {void}
+ *
+ */
+selectTemplates = () => {
+
+  // Get selection
+  let templatesSelect = document.getElementById('imagescene-template');
+  const selectedFilename = templatesSelect.value;
+  const selectedTemplate = templatesData.find(template => template.filename === selectedFilename);
+  console.log(selectedTemplate);
+  
+  // Adjust details
+  const templatesName = document.getElementById('template-name');
+  const templatesAuthor = document.getElementById('template-author');
+  const templatesDescription = document.getElementById('template-description');
+  templatesName.textContent = selectedTemplate.name;
+  templatesAuthor.textContent = selectedTemplate.author;
+  templatesDescription.textContent = selectedTemplate.description;
 
 };
 
