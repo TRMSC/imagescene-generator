@@ -321,7 +321,7 @@ generateScene = () => {
   const originPath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/';
   const relativePath = '../templates/';
   let templatePath = baseUrl.includes('github.io') ? originPath : relativePath;
-  templatePath = templatePath + templateName + '.raw';
+  templatePath = templatePath + templateName;
 
   // Fetch template content
   let templateContent = '';
