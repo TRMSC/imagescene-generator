@@ -9,10 +9,12 @@
  * Define global variables
  * 
  * @param {array} templatesData Empty array for the templates.json content
+ * @param {array} templatePath Path to the template directory depending on github or server adress
  * @param {array} shareData Site information for share method
  *
  */
 let templatesData = [];
+let templatesPath;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
@@ -233,7 +235,7 @@ loadTemplates = () => {
   const baseUrl = window.location.href;
   const originPath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/';
   const relativePath = '../templates/';
-  let templatesPath = baseUrl.includes('github.io') ? originPath : relativePath;
+  templatesPath = baseUrl.includes('github.io') ? originPath : relativePath;
   let json = templatesPath + 'templates.json';
   console.log(json);
 
@@ -319,17 +321,11 @@ generateScene = () => {
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
-
-  // Build path
-  const baseUrl = window.location.href;
-  const originPath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/';
-  const relativePath = '../templates/';
-  let templatePath = baseUrl.includes('github.io') ? originPath : relativePath;
-  templatePath = templatePath + templateName;
+  let template = templatesPath + templateName;
 
   // Fetch template content
   let templateContent = '';
-  fetch(templatePath)
+  fetch(template)
     .then(response => {
       // Check
       if (!response.ok) {
