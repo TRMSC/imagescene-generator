@@ -36,6 +36,7 @@ window.onload = function() {
 
   // Call functions
   addYear();
+  loadTemplates();
   listenEvents();
 
   // Return
@@ -210,6 +211,45 @@ changeStatus = () => {
   let status = document.getElementById('imagescene-status');
   status.textContent = '🔁 Ergebnis ist nicht aktuell';
   status.setAttribute('title', 'Bitte Szene mit den geänderten Werten neu generieren');
+
+};
+
+
+/**
+ * Load templates from templates.json
+ * 
+ * @function loadTemplates
+ * @returns {void}
+ * @TODO Building path is actually a duplicate within the script
+ *
+ */
+loadTemplates = () => {
+
+  // Build path
+  const baseUrl = window.location.href;
+  const originPath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/';
+  const relativePath = '../templates/';
+  let templatesPath = baseUrl.includes('github.io') ? originPath : relativePath;
+  let json = templatesPath + 'templates.json';
+  console.log(json);
+
+  // Fetch data
+  fetch(json)
+    .then(response => response.json())
+    .then(data => {
+      templatesData = data.templates;
+      const templatesSelect = document.getElementById('imagescene-template');
+
+      templatesData.forEach((template, index) => {
+        const option = document.createElement('option');
+        option.textContent = template.name;
+        option.value = template.filename;
+        templatesSelect.appendChild(option);
+      });
+    })
+    .catch(error => {
+      console.error('Error when loading templates.json: ' + error);
+    });
 
 };
 
