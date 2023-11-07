@@ -6,16 +6,18 @@
 ------------------------------------------------------------------------------------------------*/
 
 /**
- * Define const variables
+ * Define global variables
  * 
+ * @param {array} templatesData Empty array for the templates.json content
  * @param {array} shareData Site information for share method
  *
  */
+let templatesData = [];
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
   url: window.location
-}
+};
 
 
 /**
