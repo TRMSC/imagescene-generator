@@ -133,9 +133,6 @@ footer {
     svg {
         border-radius: 8px;
     }
-    .select-container {
-        flex-direction: column;
-    }
 }
 @media (max-width: 568px) {
     html {
@@ -143,6 +140,9 @@ footer {
     }
     svg {
         border-radius: 6px;
+    }
+    .select-container {
+        flex-direction: column;
     }
     #result-container {
         display: flex;
