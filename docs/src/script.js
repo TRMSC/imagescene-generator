@@ -516,7 +516,7 @@ showInfo = (content) => {
 downloadFile = (type) => {
   // Get values
   let html = document.getElementById('imagescene-result').value;
-  let template = document.getElementById('imagescene-template').value;
+  let template = document.getElementById('imagescene-template').value.replace("raw", type);
 
   // Get date for filename
   const date = new Date();
@@ -535,7 +535,7 @@ downloadFile = (type) => {
   // Download
   const a = document.createElement('a');
   a.href = url;
-  a.download = currentDate + '-' + 'imagescene-' + template + '.' + type;
+  a.download = currentDate + '-' + 'imagescene-' + template;
   a.click();
 
   // Release URL resource
