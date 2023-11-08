@@ -4,13 +4,13 @@
         "name": "Bubbles",
         "filename": "bubbles.raw",
         "author": "",
-        "description": "Beschreibung des Bubbles Templates..."
+        "description": "mit aufploppenden Blasen in unterschiedlicher Größe und Geschwindigkeit, die nach oben aufsteigend langsam verschwinden."
       },
       {
         "name": "Indian Summer",
         "filename": "indian-summer.raw",
         "author": "TRMSC",
-        "description": "Langsam nach unten schwebende Staubpartikel mit Sonnenreflexen.",
+        "description": "mit langsam nach unten schwebenden Staubpartikeln und wandernden Sonnenreflexen.",
         "default": true
       }
     ]
