@@ -6,16 +6,20 @@
 ------------------------------------------------------------------------------------------------*/
 
 /**
- * Define const variables
+ * Define global variables
  * 
+ * @param {array} templatesData Empty array for the templates.json content
+ * @param {array} templatePath Path to the template directory depending on github or server adress
  * @param {array} shareData Site information for share method
  *
  */
+let templatesData = [];
+let templatesPath;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
   url: window.location
-}
+};
 
 
 /**
@@ -34,6 +38,7 @@ window.onload = function() {
 
   // Call functions
   addYear();
+  loadTemplates();
   listenEvents();
 
   // Return
@@ -107,7 +112,10 @@ listenEvents = () => {
 
   // Update status when template was changed
   let templateSelect = document.getElementById('imagescene-template');
-  templateSelect.addEventListener('change', changeStatus); 
+  templateSelect.addEventListener('change', function () {
+    selectTemplates();
+    changeStatus();
+  });
 
   // Update status when width input was changes
   let width = document.getElementById('imagescene-w');
@@ -217,6 +225,75 @@ changeStatus = () => {
 
 
 /**
+ * Load templates from templates.json
+ * 
+ * @function loadTemplates
+ * @returns {void}
+ *
+ */
+loadTemplates = () => {
+
+  // Build path
+  const baseUrl = window.location.href;
+  const originPath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/';
+  const relativePath = '../templates/';
+  templatesPath = baseUrl.includes('github.io') ? originPath : relativePath;
+  let json = templatesPath + 'templates.json';
+
+  // Fetch data
+  fetch(json)
+    .then(response => response.json())
+    .then(data => {
+      // Handle template data
+      templatesData = data.templates;
+      let templatesSelect = document.getElementById('imagescene-template');
+
+      // Create options
+      templatesData.forEach((template, index) => {
+        const option = document.createElement('option');
+        option.textContent = template.name;
+        option.value = template.filename;
+        if (template.default === true) option.selected = 'selected';
+        templatesSelect.appendChild(option);
+      });
+
+      // Handle template selection
+      selectTemplates();
+
+    })
+    .catch(error => {
+      console.error('Error when loading templates.json: ' + error);
+    });
+
+};
+
+
+/**
+ * Handle template selection
+ * 
+ * @function selectTemplates
+ * @returns {void}
+ *
+ */
+selectTemplates = () => {
+
+  // Get selection
+  let templatesSelect = document.getElementById('imagescene-template');
+  const selectedFilename = templatesSelect.value;
+  const selectedTemplate = templatesData.find(template => template.filename === selectedFilename);
+  
+  // Adjust details
+  const templatesName = document.getElementById('template-name');
+  const templatesAuthor = document.getElementById('template-author');
+  const templatesDescription = document.getElementById('template-description');
+  templatesName.textContent = selectedTemplate.name;
+  templatesAuthor.textContent = selectedTemplate.author;
+  templatesDescription.textContent = selectedTemplate.description;
+
+};
+
+
+/**
  * Start generating the scene
  * 
  * @function generateScene
@@ -277,17 +354,11 @@ generateScene = () => {
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
-
-  // Build path
-  const baseUrl = window.location.href;
-  const originPath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/';
-  const relativePath = '../templates/';
-  let templatePath = baseUrl.includes('github.io') ? originPath : relativePath;
-  templatePath = templatePath + templateName + '.raw';
+  let template = templatesPath + templateName;
 
   // Fetch template content
   let templateContent = '';
-  fetch(templatePath)
+  fetch(template)
     .then(response => {
       // Check
       if (!response.ok) {
@@ -436,7 +507,7 @@ showInfo = (content) => {
 
 
 /**
- * Download code as HTML
+ * Download file as HTML or SVG
  * 
  * @function downloadFile
  * @param {string} type - Includes the file type (html or svg)
@@ -445,14 +516,17 @@ showInfo = (content) => {
 downloadFile = (type) => {
   // Get values
   let html = document.getElementById('imagescene-result').value;
-  let template = document.getElementById('imagescene-template').value;
+  let template = document.getElementById('imagescene-template').value.replace("raw", type);
 
-  // Get date for filename
+  // Get date and time for filename
   const date = new Date();
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
-  const currentDate = `${year}-${month}-${day}`;
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  const currentDate = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
 
   // Add XML declaration for SVG type
   if (type === 'svg') html = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${html}`;
@@ -464,7 +538,7 @@ downloadFile = (type) => {
   // Download
   const a = document.createElement('a');
   a.href = url;
-  a.download = currentDate + '-' + 'imagescene-' + template + '.' + type;
+  a.download = currentDate + '-' + 'imagescene-' + template;
   a.click();
 
   // Release URL resource

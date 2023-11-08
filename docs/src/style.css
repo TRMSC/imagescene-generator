@@ -31,6 +31,9 @@ h3 {
     text-decoration: underline;
     margin-block-end: 0.5em;
 }
+.ic-bold {
+    font-weight: bold;
+}
 input[type="button"] {
     cursor: pointer;
     border-radius: 3px;
@@ -130,9 +133,6 @@ footer {
     svg {
         border-radius: 8px;
     }
-    .select-container {
-        flex-direction: column;
-    }
 }
 @media (max-width: 568px) {
     html {
@@ -140,6 +140,9 @@ footer {
     }
     svg {
         border-radius: 6px;
+    }
+    .select-container {
+        flex-direction: column;
     }
     #result-container {
         display: flex;
