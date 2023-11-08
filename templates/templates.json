@@ -10,7 +10,8 @@
         "name": "Indian Summer",
         "filename": "indian-summer.raw",
         "author": "TRMSC",
-        "description": "Beschreibung des Indian Summer Templates..."
+        "description": "Beschreibung des Indian Summer Templates...",
+        "default": true
       }
     ]
   }

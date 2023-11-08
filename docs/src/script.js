@@ -253,6 +253,7 @@ loadTemplates = () => {
         const option = document.createElement('option');
         option.textContent = template.name;
         option.value = template.filename;
+        if (template.default === true) option.selected = 'selected';
         templatesSelect.appendChild(option);
       });
 
@@ -280,7 +281,6 @@ selectTemplates = () => {
   let templatesSelect = document.getElementById('imagescene-template');
   const selectedFilename = templatesSelect.value;
   const selectedTemplate = templatesData.find(template => template.filename === selectedFilename);
-  console.log(selectedTemplate);
   
   // Adjust details
   const templatesName = document.getElementById('template-name');
