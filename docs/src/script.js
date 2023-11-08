@@ -507,7 +507,7 @@ showInfo = (content) => {
 
 
 /**
- * Download code as HTML
+ * Download file as HTML or SVG
  * 
  * @function downloadFile
  * @param {string} type - Includes the file type (html or svg)
