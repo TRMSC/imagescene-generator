@@ -8,11 +8,13 @@
 /**
  * Define global variables
  * 
+ * @param {boolean} hasGenerated State of the generating progress
  * @param {array} templatesData Empty array for the templates.json content
  * @param {array} templatePath Path to the template directory depending on github or server adress
  * @param {array} shareData Site information for share method
  *
  */
+let hasGenerated = false;
 let templatesData = [];
 let templatesPath;
 const shareData = {
@@ -217,9 +219,16 @@ getValues = () => {
  */
 changeStatus = () => {
 
+  // Handle status feedback
   let status = document.getElementById('imagescene-status');
   status.textContent = '🔁 Ergebnis ist nicht aktuell';
   status.setAttribute('title', 'Bitte Szene mit den geänderten Werten neu generieren');
+
+  // Adjust button value
+  if (hasGenerated) {
+    let update = document.getElementById('imagescene-generate');
+    update.value = "Szene aktualisieren";
+  }
 
 };
 
@@ -346,6 +355,7 @@ generateScene = () => {
   let status = document.getElementById('imagescene-status');
   status.textContent = '✅ Ergebnis ist aktuell';
   status.setAttribute('title', 'Die generierte Szene entspricht den Eingaben innerhalb des Generators');
+  hasGenerated = true;
 
   // Show result
   let show = document.getElementById('resultpart');
