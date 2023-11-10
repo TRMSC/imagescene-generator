@@ -46,6 +46,9 @@ h3 {
 .ic-bold {
     font-weight: bold;
 }
+.ic-d-none {
+    display: none;
+}
 input[type="button"] {
     cursor: pointer;
     border-radius: 3px;
