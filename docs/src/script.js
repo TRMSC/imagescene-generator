@@ -131,6 +131,12 @@ listenEvents = () => {
   let alt = document.getElementById('imagescene-alt');
   alt.addEventListener('input', changeStatus);
 
+  // Clean generator fields
+  let clean = document.getElementById('imagescene-clean');
+  clean.addEventListener('click', function() {
+    cleanGenerator('clean');
+  });
+
   // Generate scene
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
@@ -230,15 +236,41 @@ changeStatus = () => {
     update.value = "Szene aktualisieren";
   }
 
-  // Handle clean button
+  cleanGenerator('update');
+
+};
+
+
+/**
+ * Handle cleaning progress for generator
+ * 
+ * @function cleanGenerator
+ * @param {string} way Determine ongoing in the sense of update button or clean the fields
+ * @returns {void}
+ *
+ */
+cleanGenerator = (way) => {
+
+  // Declare variables for both ways
   let clean = document.getElementById('imagescene-clean');
   let generatePart = document.getElementById('generatepart');
   let inputFields = generatePart.querySelectorAll('input[type="number"]');
   let textAreas = generatePart.querySelectorAll('textarea');
-  let inputFieldsEmpty = Array.from(inputFields).every(field => field.value.trim() == '');
-  let textAreasEmpty = Array.from(textAreas).every(area => area.value.trim() == '');
 
-  inputFieldsEmpty && textAreasEmpty ? clean.classList.add('ic-hidden') : clean.classList.remove('ic-hidden');
+  // Split ongoing
+  if (way === 'update') {
+
+    // Update button
+    let inputFieldsEmpty = Array.from(inputFields).every(field => field.value.trim() == '');
+    let textAreasEmpty = Array.from(textAreas).every(area => area.value.trim() == '');
+    inputFieldsEmpty && textAreasEmpty ? clean.classList.add('ic-hidden') : clean.classList.remove('ic-hidden');
+
+  } else {
+
+    // Clean fields
+    console.log('clean...');
+    
+  }
 
 };
 
