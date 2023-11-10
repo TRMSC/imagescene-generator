@@ -268,8 +268,16 @@ cleanGenerator = (way) => {
   } else {
 
     // Clean fields
-    console.log('clean...');
-    
+    inputFields.forEach(field => {
+      field.value = '';
+    });
+    textAreas.forEach(area => {
+      area.value = '';
+    });
+
+    // Call this function again for updating
+    cleanGenerator('update');
+
   }
 
 };
