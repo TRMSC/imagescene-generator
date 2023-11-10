@@ -236,6 +236,7 @@ changeStatus = () => {
     update.value = "Szene aktualisieren";
   }
 
+  // Handle cleaning button
   cleanGenerator('update');
 
 };
@@ -307,6 +308,7 @@ loadTemplates = () => {
   fetch(json)
     .then(response => response.json())
     .then(data => {
+      
       // Handle template data
       templatesData = data.templates;
       let templatesSelect = document.getElementById('imagescene-template');
