@@ -46,8 +46,8 @@ h3 {
 .ic-bold {
     font-weight: bold;
 }
-.ic-d-none {
-    display: none;
+.ic-hidden {
+    visibility: hidden;
 }
 input[type="button"] {
     cursor: pointer;
