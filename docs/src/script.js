@@ -275,8 +275,8 @@ cleanGenerator = (way) => {
       area.value = '';
     });
 
-    // Call this function again for updating
-    cleanGenerator('update');
+    // Call function for changing status
+    changeStatus();
 
   }
 
