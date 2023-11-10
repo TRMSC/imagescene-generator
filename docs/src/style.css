@@ -37,6 +37,7 @@ a {
 }
 .ic-icon-3 {
     width: 1.17em;
+    cursor: pointer;
 }
 h3 {
     text-decoration: underline;
