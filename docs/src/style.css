@@ -27,12 +27,27 @@ a {
     padding: 5px 20px 10px 20px;
     background-color: #7b876d2b;
 }
+.stretchpart {
+    display: flex;
+    justify-content: space-between;
+}
+.ic-font-3 {
+    font-size: 1.17em;
+    display: flex;
+}
+.ic-icon-3 {
+    width: 1.17em;
+    cursor: pointer;
+}
 h3 {
     text-decoration: underline;
     margin-block-end: 0.5em;
 }
 .ic-bold {
     font-weight: bold;
+}
+.ic-hidden {
+    visibility: hidden;
 }
 input[type="button"] {
     cursor: pointer;

@@ -131,6 +131,12 @@ listenEvents = () => {
   let alt = document.getElementById('imagescene-alt');
   alt.addEventListener('input', changeStatus);
 
+  // Clean generator fields
+  let clean = document.getElementById('imagescene-clean');
+  clean.addEventListener('click', function() {
+    cleanGenerator('clean');
+  });
+
   // Generate scene
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
@@ -230,6 +236,55 @@ changeStatus = () => {
     update.value = "Szene aktualisieren";
   }
 
+  // Handle cleaning button
+  cleanGenerator('update');
+
+};
+
+
+/**
+ * Handle cleaning progress for generator
+ * 
+ * @function cleanGenerator
+ * @param {string} way Determine ongoing in the sense of update button or clean the fields
+ * @returns {void}
+ *
+ */
+cleanGenerator = (way) => {
+
+  // Declare variables for both ways
+  let clean = document.getElementById('imagescene-clean');
+  let generatePart = document.getElementById('generatepart');
+  let inputFields = generatePart.querySelectorAll('input[type="number"]');
+  let textAreas = generatePart.querySelectorAll('textarea');
+  let templateSelect = document.getElementById('imagescene-template');
+  let defaultTemplate = 'indian-summer.raw';
+
+  // Split ongoing
+  if (way === 'update') {
+
+    // Update button
+    let inputFieldsEmpty = Array.from(inputFields).every(field => field.value.trim() == '');
+    let textAreasEmpty = Array.from(textAreas).every(area => area.value.trim() == '');
+    let templateDefault = templateSelect.value === defaultTemplate;
+    inputFieldsEmpty && textAreasEmpty && templateDefault ? clean.classList.add('ic-hidden') : clean.classList.remove('ic-hidden');
+
+  } else {
+
+    // Clear fields
+    inputFields.forEach(field => {
+      field.value = '';
+    });
+
+    textAreas.forEach(area => {
+      area.value = '';
+    });
+
+    // Reset templates
+    loadTemplates();
+
+  }
+
 };
 
 
@@ -253,9 +308,11 @@ loadTemplates = () => {
   fetch(json)
     .then(response => response.json())
     .then(data => {
+      
       // Handle template data
       templatesData = data.templates;
       let templatesSelect = document.getElementById('imagescene-template');
+      templatesSelect.innerHTML = '';
 
       // Create options
       templatesData.forEach((template, index) => {
@@ -265,6 +322,9 @@ loadTemplates = () => {
         if (template.default === true) option.selected = 'selected';
         templatesSelect.appendChild(option);
       });
+
+      // Call function for changing status
+      changeStatus();
 
       // Handle template selection
       selectTemplates();
@@ -595,6 +655,9 @@ handleFileSelect = (file) => {
         // Set Data URI directly to the textarea
         let textarea = document.getElementById('imagescene-url');
         textarea.value = dataUri;
+
+        // Change status
+        changeStatus();
         
       };
 
