@@ -256,6 +256,8 @@ cleanGenerator = (way) => {
   let generatePart = document.getElementById('generatepart');
   let inputFields = generatePart.querySelectorAll('input[type="number"]');
   let textAreas = generatePart.querySelectorAll('textarea');
+  let templateSelect = document.getElementById('imagescene-template');
+  let defaultTemplate = 'indian-summer-raw';
 
   // Split ongoing
   if (way === 'update') {
@@ -263,7 +265,8 @@ cleanGenerator = (way) => {
     // Update button
     let inputFieldsEmpty = Array.from(inputFields).every(field => field.value.trim() == '');
     let textAreasEmpty = Array.from(textAreas).every(area => area.value.trim() == '');
-    inputFieldsEmpty && textAreasEmpty ? clean.classList.add('ic-hidden') : clean.classList.remove('ic-hidden');
+    let templateDefault = templateSelect.value === defaultTemplate;
+    inputFieldsEmpty && textAreasEmpty && templateDefault ? clean.classList.add('ic-hidden') : clean.classList.remove('ic-hidden');
 
   } else {
 
@@ -271,9 +274,20 @@ cleanGenerator = (way) => {
     inputFields.forEach(field => {
       field.value = '';
     });
+
     textAreas.forEach(area => {
       area.value = '';
     });
+
+    /*
+    for (let i = 0; i < templateSelect.options.length; i++) {
+      if (templateSelect.options[i].value === defaultTemplate) {
+        templateSelect.selectedIndex = i;
+        break;
+      }
+    }
+    */
+    loadTemplates();
 
     // Call function for changing status
     changeStatus();
@@ -306,6 +320,7 @@ loadTemplates = () => {
       // Handle template data
       templatesData = data.templates;
       let templatesSelect = document.getElementById('imagescene-template');
+      templatesSelect.innerHTML = '';
 
       // Create options
       templatesData.forEach((template, index) => {
