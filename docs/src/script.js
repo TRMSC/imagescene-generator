@@ -257,7 +257,7 @@ cleanGenerator = (way) => {
   let inputFields = generatePart.querySelectorAll('input[type="number"]');
   let textAreas = generatePart.querySelectorAll('textarea');
   let templateSelect = document.getElementById('imagescene-template');
-  let defaultTemplate = 'indian-summer-raw';
+  let defaultTemplate = 'indian-summer.raw';
 
   // Split ongoing
   if (way === 'update') {
@@ -281,9 +281,6 @@ cleanGenerator = (way) => {
 
     // Reset templates
     loadTemplates();
-
-    // Call function for changing status
-    changeStatus();
 
   }
 
@@ -323,6 +320,9 @@ loadTemplates = () => {
         if (template.default === true) option.selected = 'selected';
         templatesSelect.appendChild(option);
       });
+
+      // Call function for changing status
+      changeStatus();
 
       // Handle template selection
       selectTemplates();
