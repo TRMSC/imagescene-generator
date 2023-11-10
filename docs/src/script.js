@@ -230,6 +230,16 @@ changeStatus = () => {
     update.value = "Szene aktualisieren";
   }
 
+  // Handle clean button
+  let clean = document.getElementById('imagescene-clean');
+  let generatePart = document.getElementById('generatepart');
+  let inputFields = generatePart.querySelectorAll('input[type="number"]');
+  let textAreas = generatePart.querySelectorAll('textarea');
+  let inputFieldsEmpty = Array.from(inputFields).every(field => field.value.trim() == '');
+  let textAreasEmpty = Array.from(textAreas).every(area => area.value.trim() == '');
+
+  inputFieldsEmpty && textAreasEmpty ? clean.classList.add('ic-hidden') : clean.classList.remove('ic-hidden');
+
 };
 
 
