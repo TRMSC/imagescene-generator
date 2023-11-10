@@ -270,7 +270,7 @@ cleanGenerator = (way) => {
 
   } else {
 
-    // Clean fields
+    // Clear fields
     inputFields.forEach(field => {
       field.value = '';
     });
@@ -279,14 +279,7 @@ cleanGenerator = (way) => {
       area.value = '';
     });
 
-    /*
-    for (let i = 0; i < templateSelect.options.length; i++) {
-      if (templateSelect.options[i].value === defaultTemplate) {
-        templateSelect.selectedIndex = i;
-        break;
-      }
-    }
-    */
+    // Reset templates
     loadTemplates();
 
     // Call function for changing status
