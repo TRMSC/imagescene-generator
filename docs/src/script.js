@@ -141,6 +141,10 @@ listenEvents = () => {
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
 
+  // Toggle settings
+  let settingToggle = document.getElementById('imagescene-edit');
+  settingToggle.addEventListener('click', handleSettings);
+
   // Copy to clipboard
   let clipboardButton = document.getElementById('imagescene-copy');
   clipboardButton.addEventListener('click', copyClipboard);
@@ -481,6 +485,26 @@ scrollResult = () => {
 
 
 /**
+ * Handle Settings
+ * 
+ * @function handleSettings
+ * @returns {void}
+ *
+ */
+handleSettings = () => {
+
+  // Declare target elements
+  let editContainers = document.querySelectorAll('.edit-container');
+
+  // Toggle each element
+  editContainers.forEach(container => {
+    container.classList.toggle('ic-d-none');
+  });
+
+};
+
+
+/**
  * Share page by using the share api
  * 
  * @async
@@ -598,6 +622,11 @@ downloadFile = (type) => {
   const seconds = String(date.getSeconds()).padStart(2, '0');
   const currentDate = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
 
+  // Get filename
+  let userInput = document.getElementById('imagescene-filename');
+  let defaultFilename = currentDate + '-imagescene-' + template;
+  let filename = userInput.value.trim() !== '' ? userInput.value + '.' + type : defaultFilename
+
   // Add XML declaration for SVG type
   if (type === 'svg') html = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${html}`;
 
@@ -608,7 +637,7 @@ downloadFile = (type) => {
   // Download
   const a = document.createElement('a');
   a.href = url;
-  a.download = currentDate + '-' + 'imagescene-' + template;
+  a.download = filename;
   a.click();
 
   // Release URL resource
