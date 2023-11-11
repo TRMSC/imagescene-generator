@@ -49,6 +49,9 @@ h3 {
 .ic-hidden {
     visibility: hidden;
 }
+.ic-d-none {
+    display: none!important;
+}
 input[type="button"] {
     cursor: pointer;
     border-radius: 3px;
