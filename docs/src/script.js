@@ -141,6 +141,10 @@ listenEvents = () => {
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
 
+  // Toggle settings
+  let settingToggle = document.getElementById('imagescene-edit');
+  settingToggle.addEventListener('click', handleSettings);
+
   // Copy to clipboard
   let clipboardButton = document.getElementById('imagescene-copy');
   clipboardButton.addEventListener('click', copyClipboard);
@@ -475,6 +479,26 @@ scrollResult = () => {
   window.scrollTo({
     top: targetPosition,
     behavior: 'smooth'
+  });
+
+};
+
+
+/**
+ * Handle Settings
+ * 
+ * @function handleSettings
+ * @returns {void}
+ *
+ */
+handleSettings = () => {
+
+  // Declare target elements
+  let editContainers = document.querySelectorAll('.edit-container');
+
+  // Toggle each element
+  editContainers.forEach(container => {
+    container.classList.toggle('ic-d-none');
   });
 
 };
