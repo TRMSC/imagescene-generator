@@ -11,12 +11,14 @@
  * @param {boolean} hasGenerated State of the generating progress
  * @param {array} templatesData Empty array for the templates.json content
  * @param {array} templatePath Path to the template directory depending on github or server adress
+ * @param {string} defaultFilename The filename that is used as default for download actions
  * @param {array} shareData Site information for share method
  *
  */
 let hasGenerated = false;
 let templatesData = [];
 let templatesPath;
+let defaultFilename;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
@@ -385,6 +387,13 @@ generateScene = () => {
   // Search for embedded url using regex
   const srcMatch = content.match(/src=["'](.*?)["']/);
   let url = srcMatch ? srcMatch[1] : content;
+
+  // Generate filename from url
+  if (!defaultFilename) {
+    const lastSlash = url.lastIndexOf('/');
+    defaultFilename = lastSlash > 0 ? url.substring(lastSlash + 1, url.lastIndexOf('.')) : url.substring(lastSlash + 1, lastSlash + 9);
+    console.log(defaultFilename);
+  }
 
   // Check completeness
   let check = true;
