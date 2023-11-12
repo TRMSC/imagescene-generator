@@ -203,9 +203,21 @@
             <img class="ic-icon-3" src="icons/cog.svg">
           </span>
         </div>
+        <div class="select-container edit-container ic-d-none">
+          <div class="nested-container">
+            <label for="imagescene-filename-select" class="miniheading">Dateiname:</label>
+            <select id="imagescene-filename-select" name="imagescene-filename-select">
+              <option value="1">Originaltitel-Imagescene-Template-Zeit</option>
+              <option value="2">Originaltitel-Imagescene-Template</option>
+              <option value="3">Imagescene-Template-Originaltitel-Zeit</option>
+              <option value="4">Imagescene-Template-Originaltitel</option>
+              <option value="5">Zeit-Originaltitel-Imagescene-Template</option>
+              <option value="6">Zeit-Imagescene-Template-Originaltitel</option>
+            </select>
+          </div>
+        </div>
         <div class="input-container edit-container ic-d-none">
-          <label for="imagescene-filename" class="miniheading">Dateiname (ohne Endung):</label>
-          <textarea class="generate" id="imagescene-filename" name="imagescene-filename" rows="1" spellcheck="false" wrap="off" placeholder="Freilassen für automatische Bezeichnung..."></textarea>
+          <textarea class="generate" id="imagescene-filename" name="imagescene-filename" rows="1" spellcheck="false" wrap="off" placeholder="Alternativ kann ein eigener Dateiname vergeben werden (ohne Dateiendung)..."></textarea>
         </div>
         <div class="input-container">
           <label for="imagescene-result" class="miniheading">Code:</label>
