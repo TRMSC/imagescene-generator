@@ -388,13 +388,15 @@ generateScene = () => {
   const srcMatch = content.match(/src=["'](.*?)["']/);
   let url = srcMatch ? srcMatch[1] : content;
 
-  // Generate filename from url
-  if (!defaultFilename) defaultFilename = url;
+  // Get information for generating filename
+  defaultFilename = content.includes("data:image/") ? "/" + defaultFilename : url;
   const lastSlash = defaultFilename.lastIndexOf('/');
-  defaultFilename = lastSlash > 0 
-    ? defaultFilename.substring(lastSlash + 1, defaultFilename.lastIndexOf('.')) 
+  const lastDot = defaultFilename.lastIndexOf('.');
+
+  // Create filename
+  defaultFilename = (lastSlash !== -1 && lastDot > lastSlash) 
+    ? defaultFilename.substring(lastSlash + 1, lastDot) 
     : defaultFilename.substring(lastSlash + 1, lastSlash + 9);
-  console.log(defaultFilename);
 
   // Check completeness
   let check = true;
