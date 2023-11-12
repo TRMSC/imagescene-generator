@@ -389,11 +389,10 @@ generateScene = () => {
   let url = srcMatch ? srcMatch[1] : content;
 
   // Generate filename from url
-  if (!defaultFilename) {
-    const lastSlash = url.lastIndexOf('/');
-    defaultFilename = lastSlash > 0 ? url.substring(lastSlash + 1, url.lastIndexOf('.')) : url.substring(lastSlash + 1, lastSlash + 9);
-    console.log(defaultFilename);
-  }
+  if (!defaultFilename) defaultFilename = url;
+  const lastSlash = defaultFilename.lastIndexOf('/');
+  defaultFilename = lastSlash > 0 ? defaultFilename.substring(lastSlash + 1, defaultFilename.lastIndexOf('.')) : defaultFilename.substring(lastSlash + 1, lastSlash + 9);
+  console.log(defaultFilename);
 
   // Check completeness
   let check = true;
@@ -666,6 +665,8 @@ handleFileSelect = (file) => {
 
   // Check if a file was provided
   if (file) {
+
+    defaultFilename = file.name;
 
     const reader = new FileReader();
 
