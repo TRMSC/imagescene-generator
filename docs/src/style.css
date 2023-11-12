@@ -88,6 +88,10 @@ input[type="button"]:hover {
 select {
     font-size: 12pt;
 }
+.nested-container {
+    display: flex;
+    flex-direction: column;
+}
 .miniheading {
     margin: 10px 0px 5px 0px;
 }
