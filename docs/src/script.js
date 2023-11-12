@@ -391,7 +391,9 @@ generateScene = () => {
   // Generate filename from url
   if (!defaultFilename) defaultFilename = url;
   const lastSlash = defaultFilename.lastIndexOf('/');
-  defaultFilename = lastSlash > 0 ? defaultFilename.substring(lastSlash + 1, defaultFilename.lastIndexOf('.')) : defaultFilename.substring(lastSlash + 1, lastSlash + 9);
+  defaultFilename = lastSlash > 0 
+    ? defaultFilename.substring(lastSlash + 1, defaultFilename.lastIndexOf('.')) 
+    : defaultFilename.substring(lastSlash + 1, lastSlash + 9);
   console.log(defaultFilename);
 
   // Check completeness
