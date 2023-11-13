@@ -143,10 +143,6 @@ listenEvents = () => {
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
 
-  // Toggle settings
-  let settingToggle = document.getElementById('imagescene-edit');
-  settingToggle.addEventListener('click', handleSettings);
-
   // Copy to clipboard
   let clipboardButton = document.getElementById('imagescene-copy');
   clipboardButton.addEventListener('click', copyClipboard);
@@ -497,10 +493,18 @@ scrollResult = () => {
 
 
 /**
- * Handle Settings
+ * Handle hidden Settings within the result part
  * 
  * @function handleSettings
  * @returns {void}
+ * 
+ * @ignore
+ * This function is actually not needed but maybe important for later.
+ * The following eventlistener is neccessary within listenEvents() when this function will be active:
+ * 
+ * // Toggle settings
+ * let settingToggle = document.getElementById('imagescene-edit');
+ * settingToggle.addEventListener('click', handleSettings);
  *
  */
 handleSettings = () => {
