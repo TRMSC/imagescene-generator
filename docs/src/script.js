@@ -636,17 +636,14 @@ downloadFile = (type) => {
 
   // Get filename
   let userInput = document.getElementById('imagescene-filename');
-  let defaultFilename = currentDate + '-imagescene-' + template;
-  let filename = userInput.value.trim() !== '' ? userInput.value + '.' + type : defaultFilename
-
-  // Create new filename
   let option = document.getElementById("imagescene-filename-select").value;
   option = option
     .replace('{file}', originalFilename)
     .replace('{template}', template)
     .replace('{date}', currentDate)
     .replace('{type}', type);
-  console.log(option);
+  let filename = userInput.value.trim() !== '' ? userInput.value + '.' + type : option;
+
 
   // Add XML declaration for SVG type
   if (type === 'svg') html = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${html}`;
