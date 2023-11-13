@@ -11,14 +11,14 @@
  * @param {boolean} hasGenerated State of the generating progress
  * @param {array} templatesData Empty array for the templates.json content
  * @param {array} templatePath Path to the template directory depending on github or server adress
- * @param {string} defaultFilename The filename that is used as default for download actions
+ * @param {string} originalFilename The filename that is used as default for download actions
  * @param {array} shareData Site information for share method
  *
  */
 let hasGenerated = false;
 let templatesData = [];
 let templatesPath;
-let defaultFilename;
+let originalFilename;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
@@ -389,14 +389,14 @@ generateScene = () => {
   let url = srcMatch ? srcMatch[1] : content;
 
   // Get information for generating filename
-  defaultFilename = content.includes("data:image/") ? "/" + defaultFilename : url;
-  const lastSlash = defaultFilename.lastIndexOf('/');
-  const lastDot = defaultFilename.lastIndexOf('.');
+  originalFilename = content.includes("data:image/") ? "/" + originalFilename : url;
+  const lastSlash = originalFilename.lastIndexOf('/');
+  const lastDot = originalFilename.lastIndexOf('.');
 
   // Create filename
-  defaultFilename = (lastSlash !== -1 && lastDot > lastSlash) 
-    ? defaultFilename.substring(lastSlash + 1, lastDot) 
-    : defaultFilename.substring(lastSlash + 1, lastSlash + 9);
+  originalFilename = (lastSlash !== -1 && lastDot > lastSlash) 
+    ? originalFilename.substring(lastSlash + 1, lastDot) 
+    : originalFilename.substring(lastSlash + 1, lastSlash + 9);
 
   // Check completeness
   let check = true;
