@@ -49,6 +49,9 @@ h3 {
 .ic-hidden {
     visibility: hidden;
 }
+.ic-no-overflow {
+    overflow: hidden;
+}
 .ic-d-none {
     display: none!important;
 }
