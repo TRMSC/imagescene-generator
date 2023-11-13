@@ -522,8 +522,11 @@ generateScene = () => {
 
       // Put the generated code to the textarea
       document.getElementById('imagescene-result').value = templateContent;
+      
+      let imagescene_result_preview = document.getElementById('imagescene-result-preview');
+      imagescene_result_preview.innerHTML = templateContent;
 
-      // Copy code to the clipboard
+          // Copy code to the clipboard
       copyClipboard();
     })
     .catch(error => {
