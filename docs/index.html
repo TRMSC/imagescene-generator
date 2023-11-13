@@ -207,12 +207,12 @@
           <div class="nested-container">
             <label for="imagescene-filename-select" class="miniheading">Dateiname:</label>
             <select id="imagescene-filename-select" name="imagescene-filename-select">
-              <option value="1">Originaltitel-Imagescene-Template</option>
-              <option value="2">Originaltitel-Imagescene-Template-Zeit</option>
-              <option value="3">Zeit-Originaltitel-Imagescene-Template</option>
-              <option value="4">Zeit-Imagescene-Template-Originaltitel</option>
-              <option value="5">Imagescene-Template-Originaltitel</option>
-              <option value="6">Imagescene-Template-Originaltitel-Zeit</option>
+              <option value="{file}-Imagescene-{template}">Originaltitel-Imagescene-Template</option>
+              <option value="{file}-Imagescene-{template}-{date}">Originaltitel-Imagescene-Template-Zeit</option>
+              <option value="{date}-{file}-Imagescene-{template}">Zeit-Originaltitel-Imagescene-Template</option>
+              <option value="{date}-Imagescene-{template}-{file}">Zeit-Imagescene-Template-Originaltitel</option>
+              <option value="Imagescene-{template}-{file}">Imagescene-Template-Originaltitel</option>
+              <option value="Imagescene-{template}-{file}-{date}">Imagescene-Template-Originaltitel-Zeit</option>
             </select>
           </div>
         </div>
