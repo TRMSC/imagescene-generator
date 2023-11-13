@@ -199,13 +199,22 @@
           <h3>
             Ergebnis
           </h3>
-          <span id="imagescene-edit" class="ic-font-3" title="Bearbeiten">
-            <img class="ic-icon-3" src="icons/cog.svg">
-          </span>
         </div>
-        <div class="input-container edit-container ic-d-none">
-          <label for="imagescene-filename" class="miniheading">Dateiname (ohne Endung):</label>
-          <textarea class="generate" id="imagescene-filename" name="imagescene-filename" rows="1" spellcheck="false" wrap="off" placeholder="Freilassen für automatische Bezeichnung..."></textarea>
+        <div class="input-container">
+          <div class="nested-container">
+            <label for="imagescene-filename-select" class="miniheading">Dateiname:</label>
+            <select id="imagescene-filename-select" name="imagescene-filename-select">
+              <option value="{file}-imagescene-{template}.{type}">Originaltitel + Projektstempel</option>
+              <option value="{file}-imagescene-{template}-{date}.{type}">Originaltitel + Projektstempel + Zeit</option>
+              <option value="{date}-{file}-imagescene-{template}.{type}">Zeit + Originaltitel + Projektstempel</option>
+              <option value="{date}-imagescene-{template}-{file}.{type}">Zeit + Projektstempel + Originaltitel</option>
+              <option value="imagescene-{template}-{file}.{type}">Projektstempel + Originaltitel</option>
+              <option value="imagescene-{template}-{file}-{date}.{type}">Projektstempel + Originaltitel + Zeit</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-container">
+          <textarea class="generate ic-no-overflow" id="imagescene-filename" name="imagescene-filename" rows="1" spellcheck="false" wrap="off" placeholder="Alternativ kann ein eigener Dateiname vergeben werden (ohne Dateiendung)..."></textarea>
         </div>
         <div class="input-container">
           <label for="imagescene-result" class="miniheading">Code:</label>

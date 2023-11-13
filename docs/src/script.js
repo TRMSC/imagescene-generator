@@ -11,12 +11,14 @@
  * @param {boolean} hasGenerated State of the generating progress
  * @param {array} templatesData Empty array for the templates.json content
  * @param {array} templatePath Path to the template directory depending on github or server adress
+ * @param {string} originalFilename The filename that is used as default for download actions
  * @param {array} shareData Site information for share method
  *
  */
 let hasGenerated = false;
 let templatesData = [];
 let templatesPath;
+let originalFilename;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
@@ -141,10 +143,6 @@ listenEvents = () => {
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
 
-  // Toggle settings
-  let settingToggle = document.getElementById('imagescene-edit');
-  settingToggle.addEventListener('click', handleSettings);
-
   // Copy to clipboard
   let clipboardButton = document.getElementById('imagescene-copy');
   clipboardButton.addEventListener('click', copyClipboard);
@@ -160,6 +158,111 @@ listenEvents = () => {
   downloadSvg.addEventListener('click', function() {
     downloadFile('svg');
   });
+
+};
+
+
+/**
+ * Load templates from templates.json
+ * 
+ * @function loadTemplates
+ * @returns {void}
+ *
+ */
+loadTemplates = () => {
+
+  // Build path
+  const baseUrl = window.location.href;
+  const originPath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/';
+  const relativePath = '../templates/';
+  templatesPath = baseUrl.includes('github.io') ? originPath : relativePath;
+  let json = templatesPath + 'templates.json';
+
+  // Fetch data
+  fetch(json)
+    .then(response => response.json())
+    .then(data => {
+      
+      // Handle template data
+      templatesData = data.templates;
+      let templatesSelect = document.getElementById('imagescene-template');
+      templatesSelect.innerHTML = '';
+
+      // Create options
+      templatesData.forEach((template, index) => {
+        const option = document.createElement('option');
+        option.textContent = template.name;
+        option.value = template.filename;
+        if (template.default === true) option.selected = 'selected';
+        templatesSelect.appendChild(option);
+      });
+
+      // Call function for changing status
+      changeStatus();
+
+      // Handle template selection
+      selectTemplates();
+
+    })
+    .catch(error => {
+      console.error('Error when loading templates.json: ' + error);
+    });
+
+};
+
+
+/**
+ * Handle file select when added via button or dropzone
+ * 
+ * @function handleFileSelect
+ * @param {File} file - The file added by user
+ * @returns {void}
+ */
+handleFileSelect = (file) => {
+
+  // Check if a file was provided
+  if (file) {
+
+    const reader = new FileReader();
+
+    reader.onload = function () {
+
+      // Convert image
+      const dataUri = reader.result;
+
+      // Handle values
+      const img = new Image();
+      img.src = dataUri;
+
+      img.onload = function () {
+
+        // Save values
+        const originalWidth = img.width;
+        const originalHeight = img.height;
+        
+        // Transmit values
+        let width = document.getElementById('imagescene-w');
+        width.value = originalWidth;
+        let height = document.getElementById('imagescene-h');
+        height.value = originalHeight;
+        
+        // Set Data URI directly to the textarea
+        let textarea = document.getElementById('imagescene-url');
+        textarea.value = dataUri;
+
+        // Save filename
+        originalFilename = file.name;
+
+        // Change status
+        changeStatus();
+        
+      };
+
+    };
+
+    reader.readAsDataURL(file);
+
+  }
 
 };
 
@@ -247,6 +350,31 @@ changeStatus = () => {
 
 
 /**
+ * Handle template selection
+ * 
+ * @function selectTemplates
+ * @returns {void}
+ *
+ */
+selectTemplates = () => {
+
+  // Get selection
+  let templatesSelect = document.getElementById('imagescene-template');
+  const selectedFilename = templatesSelect.value;
+  const selectedTemplate = templatesData.find(template => template.filename === selectedFilename);
+  
+  // Adjust details
+  const templatesName = document.getElementById('template-name');
+  const templatesAuthor = document.getElementById('template-author');
+  const templatesDescription = document.getElementById('template-description');
+  templatesName.textContent = selectedTemplate.name;
+  templatesAuthor.textContent = selectedTemplate.author;
+  templatesDescription.textContent = selectedTemplate.description;
+
+};
+
+
+/**
  * Handle cleaning progress for generator
  * 
  * @function cleanGenerator
@@ -293,80 +421,6 @@ cleanGenerator = (way) => {
 
 
 /**
- * Load templates from templates.json
- * 
- * @function loadTemplates
- * @returns {void}
- *
- */
-loadTemplates = () => {
-
-  // Build path
-  const baseUrl = window.location.href;
-  const originPath = 'https://raw.githubusercontent.com/TRMSC/imagescene-generator/main/templates/';
-  const relativePath = '../templates/';
-  templatesPath = baseUrl.includes('github.io') ? originPath : relativePath;
-  let json = templatesPath + 'templates.json';
-
-  // Fetch data
-  fetch(json)
-    .then(response => response.json())
-    .then(data => {
-      
-      // Handle template data
-      templatesData = data.templates;
-      let templatesSelect = document.getElementById('imagescene-template');
-      templatesSelect.innerHTML = '';
-
-      // Create options
-      templatesData.forEach((template, index) => {
-        const option = document.createElement('option');
-        option.textContent = template.name;
-        option.value = template.filename;
-        if (template.default === true) option.selected = 'selected';
-        templatesSelect.appendChild(option);
-      });
-
-      // Call function for changing status
-      changeStatus();
-
-      // Handle template selection
-      selectTemplates();
-
-    })
-    .catch(error => {
-      console.error('Error when loading templates.json: ' + error);
-    });
-
-};
-
-
-/**
- * Handle template selection
- * 
- * @function selectTemplates
- * @returns {void}
- *
- */
-selectTemplates = () => {
-
-  // Get selection
-  let templatesSelect = document.getElementById('imagescene-template');
-  const selectedFilename = templatesSelect.value;
-  const selectedTemplate = templatesData.find(template => template.filename === selectedFilename);
-  
-  // Adjust details
-  const templatesName = document.getElementById('template-name');
-  const templatesAuthor = document.getElementById('template-author');
-  const templatesDescription = document.getElementById('template-description');
-  templatesName.textContent = selectedTemplate.name;
-  templatesAuthor.textContent = selectedTemplate.author;
-  templatesDescription.textContent = selectedTemplate.description;
-
-};
-
-
-/**
  * Start generating the scene
  * 
  * @function generateScene
@@ -385,6 +439,16 @@ generateScene = () => {
   // Search for embedded url using regex
   const srcMatch = content.match(/src=["'](.*?)["']/);
   let url = srcMatch ? srcMatch[1] : content;
+
+  // Get information for generating filename
+  originalFilename = content.includes("data:image/") ? "/" + originalFilename : url;
+  const lastSlash = originalFilename.lastIndexOf('/');
+  const lastDot = originalFilename.lastIndexOf('.');
+
+  // Create filename
+  originalFilename = (lastSlash !== -1 && lastDot > lastSlash) 
+    ? originalFilename.substring(lastSlash + 1, lastDot) 
+    : originalFilename.substring(lastSlash + 1, lastSlash + 9);
 
   // Check completeness
   let check = true;
@@ -485,54 +549,6 @@ scrollResult = () => {
 
 
 /**
- * Handle Settings
- * 
- * @function handleSettings
- * @returns {void}
- *
- */
-handleSettings = () => {
-
-  // Declare target elements
-  let editContainers = document.querySelectorAll('.edit-container');
-
-  // Toggle each element
-  editContainers.forEach(container => {
-    container.classList.toggle('ic-d-none');
-  });
-
-};
-
-
-/**
- * Share page by using the share api
- * 
- * @async
- * @function sharePage
- * @throws {error} When the share api isn't available or the share fails
- * 
- */
-sharePage = async () => {
-
-  if (navigator.share) {
-    try {
-      await navigator.share(shareData);
-      console.log('Shared successfully');
-    } catch (err) {
-      console.log(`Error: ${err}`);
-    }
-  } else {
-    alert(
-      'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
-      'Die URL der Projektseite wird daher zum Teilen in die Zwischenablage kopiert. ✔️'
-    );
-    copyClipboard('share');
-  }
-  
-};
-
-
-/**
  * Copy to clipboard
  * 
  * @function copyClipboard
@@ -610,7 +626,7 @@ showInfo = (content) => {
 downloadFile = (type) => {
   // Get values
   let html = document.getElementById('imagescene-result').value;
-  let template = document.getElementById('imagescene-template').value.replace("raw", type);
+  let template = document.getElementById('imagescene-template').value.replace(".raw", "");
 
   // Get date and time for filename
   const date = new Date();
@@ -624,8 +640,14 @@ downloadFile = (type) => {
 
   // Get filename
   let userInput = document.getElementById('imagescene-filename');
-  let defaultFilename = currentDate + '-imagescene-' + template;
-  let filename = userInput.value.trim() !== '' ? userInput.value + '.' + type : defaultFilename
+  let option = document.getElementById("imagescene-filename-select").value;
+  option = option
+    .replace('{file}', originalFilename)
+    .replace('{template}', template)
+    .replace('{date}', currentDate)
+    .replace('{type}', type);
+  let filename = userInput.value.trim() !== '' ? userInput.value + '.' + type : option;
+
 
   // Add XML declaration for SVG type
   if (type === 'svg') html = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${html}`;
@@ -647,58 +669,64 @@ downloadFile = (type) => {
 
 
 /**
- * Handle file select when added via button or dropzone
+ * Share page by using the share api
  * 
- * @function handleFileSelect
- * @param {File} file - The file added by user
- * @returns {void}
+ * @async
+ * @function sharePage
+ * @throws {error} When the share api isn't available or the share fails
+ * 
  */
-handleFileSelect = (file) => {
+sharePage = async () => {
 
-  // Check if a file was provided
-  if (file) {
-
-    const reader = new FileReader();
-
-    reader.onload = function () {
-
-      // Convert image
-      const dataUri = reader.result;
-
-      // Handle values
-      const img = new Image();
-      img.src = dataUri;
-
-      img.onload = function () {
-
-        // Save values
-        const originalWidth = img.width;
-        const originalHeight = img.height;
-        
-        // Transmit values
-        let width = document.getElementById('imagescene-w');
-        width.value = originalWidth;
-        let height = document.getElementById('imagescene-h');
-        height.value = originalHeight;
-        
-        // Set Data URI directly to the textarea
-        let textarea = document.getElementById('imagescene-url');
-        textarea.value = dataUri;
-
-        // Change status
-        changeStatus();
-        
-      };
-
-    };
-
-    reader.readAsDataURL(file);
-
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      console.log('Shared successfully');
+    } catch (err) {
+      console.log(`Error: ${err}`);
+    }
+  } else {
+    alert(
+      'Das Teilen über die Share-API wird in diesem Browser aktuell noch nicht unterstützt. ✖️\n' +
+      'Die URL der Projektseite wird daher zum Teilen in die Zwischenablage kopiert. ✔️'
+    );
+    copyClipboard('share');
   }
-
+  
 };
 
 
+/**
+ * Handle hidden Settings within the result part
+ * 
+ * @function handleSettings
+ * @returns {void}
+ * 
+ * @ignore
+ * This function is actually not needed but maybe important for later.
+ * 
+ * The following eventlistener is neccessary within listenEvents() when this function will be active:
+ * // Toggle settings
+ * let settingToggle = document.getElementById('imagescene-edit');
+ * settingToggle.addEventListener('click', handleSettings);
+ * 
+ * Add the classes .edit-container and .ic-d-none for hidden parts in the index.html.
+ * Further the edit button is neccessary:
+ * <span id="imagescene-edit" class="ic-font-3" title="Bearbeiten">
+ *   <img class="ic-icon-3" src="icons/cog.svg">
+ * </span>
+ *
+ */
+handleSettings = () => {
 
+  // Declare target elements
+  let editContainers = document.querySelectorAll('.edit-container');
+
+  // Toggle each element
+  editContainers.forEach(container => {
+    container.classList.toggle('ic-d-none');
+  });
+
+};
 
 
