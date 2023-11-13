@@ -622,7 +622,7 @@ showInfo = (content) => {
 downloadFile = (type) => {
   // Get values
   let html = document.getElementById('imagescene-result').value;
-  let template = document.getElementById('imagescene-template').value.replace("raw", type);
+  let template = document.getElementById('imagescene-template').value.replace("raw", "");
 
   // Get date and time for filename
   const date = new Date();
