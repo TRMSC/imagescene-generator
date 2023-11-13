@@ -676,8 +676,6 @@ handleFileSelect = (file) => {
   // Check if a file was provided
   if (file) {
 
-    defaultFilename = file.name;
-
     const reader = new FileReader();
 
     reader.onload = function () {
@@ -704,6 +702,9 @@ handleFileSelect = (file) => {
         // Set Data URI directly to the textarea
         let textarea = document.getElementById('imagescene-url');
         textarea.value = dataUri;
+
+        // Save filename
+        originalFilename = file.name;
 
         // Change status
         changeStatus();
