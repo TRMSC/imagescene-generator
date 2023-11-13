@@ -253,6 +253,12 @@ handleFileSelect = (file) => {
         let textarea = document.getElementById('imagescene-url');
         textarea.value = dataUri;
 
+        // Preview
+        let preview = document.getElementById('imagescene-preview');
+        preview.src = dataUri;
+        preview.width = originalWidth;
+        preview.height = originalHeight;
+
         // Save filename
         originalFilename = file.name;
 
