@@ -44,9 +44,6 @@ window.onload = function() {
   addYear();
   loadTemplates();
   listenEvents();
-
-  // Return
-  return;
     
 };
 
@@ -71,6 +68,12 @@ addYear = () => {
  * Collect eventlisteners
  * 
  * @function listenEvents
+ * @listens click
+ * @listens change
+ * @listens dragover
+ * @listens dragleave
+ * @listens drop
+ * @listens input
  * @returns {void}
  *
  */
