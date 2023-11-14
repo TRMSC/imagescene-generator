@@ -254,10 +254,8 @@ handleFileSelect = (file) => {
         textarea.value = dataUri;
 
         // Preview
-        let preview = document.getElementById('imagescene-preview');
+        let preview = document.getElementById('imagescene-preview-generator');
         preview.src = dataUri;
-        preview.width = originalWidth;
-        preview.height = originalHeight;
 
         // Save filename
         originalFilename = file.name;
