@@ -10,6 +10,12 @@
         "name": "Indian Summer",
         "filename": "indian-summer.raw",
         "author": "TRMSC",
+        "description": "mit langsam nach unten schwebenden Staubpartikeln und wandernden Sonnenreflexen."
+      },
+      {
+        "name": "Indian Summer with addapted width",
+        "filename": "indian-summer-width.raw",
+        "author": "TRMSC",
         "description": "mit langsam nach unten schwebenden Staubpartikeln und wandernden Sonnenreflexen.",
         "default": true
       }

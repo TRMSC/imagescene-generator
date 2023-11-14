@@ -253,9 +253,11 @@ handleFileSelect = (file) => {
         let textarea = document.getElementById('imagescene-url');
         textarea.value = dataUri;
 
-        // Preview
+        // Preview of input image.
         let preview = document.getElementById('imagescene-preview-generator');
         preview.src = dataUri;
+        preview.width = originalWidth;
+        preview.height = originalHeight;
 
         // Save filename
         originalFilename = file.name;
@@ -520,9 +522,10 @@ generateScene = () => {
 
       // Put the generated code to the textarea
       document.getElementById('imagescene-result').value = templateContent;
-      
-      let imagescene_result_preview = document.getElementById('imagescene-result-preview');
-      imagescene_result_preview.innerHTML = templateContent;
+
+      // Put the generated code also to result preview.
+      let imagesceneResultPreview = document.getElementById('imagescene-result-preview');
+      imagesceneResultPreview.innerHTML = templateContent;
 
           // Copy code to the clipboard
       copyClipboard();

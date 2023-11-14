@@ -1,0 +1,45 @@
+<!-- Created with the Imagescene Generator - Copyright (C) 2023, TRMSC - https://trmsc.github.io/imagescene-generator/ -->
+<div style="width: $WIDTHpx; height: $HEIGHTpx;">
+<svg class="ic-banner" width="100%" viewBox="0 0 $WIDTH $HEIGHT" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+
+  <g class="hero-image">
+    <image width="$WIDTH" height="$HEIGHT" alt="$ALT" xlink:href="$URL" />
+  </g>
+
+  <g class="ic-dust" style="opacity: 0.1;">
+    <circle cx="5%" cy="0" r="2" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="10s" repeatCount="indefinite" /></circle>
+    <circle cx="10%" cy="0" r="1" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="20s" repeatCount="indefinite" /></circle>
+    <circle cx="15%" cy="0" r="1.5" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="12s" repeatCount="indefinite" /></circle>
+    <circle cx="25%" cy="0" r="2.5" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="8s" repeatCount="indefinite" /></circle>
+    <circle cx="30%" cy="0" r="1" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="22s" repeatCount="indefinite" /></circle>
+    <circle cx="35%" cy="0" r="2" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="14s" repeatCount="indefinite" /></circle>
+    <circle cx="45%" cy="0" r="1.5" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="12s" repeatCount="indefinite" /></circle>
+    <circle cx="50%" cy="0" r="1" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="24s" repeatCount="indefinite" /></circle>
+    <circle cx="55%" cy="0" r="2" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="10s" repeatCount="indefinite" /></circle>
+    <circle cx="65%" cy="0" r="1.5" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="12s" repeatCount="indefinite" /></circle>
+    <circle cx="70%" cy="0" r="1" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="26s" repeatCount="indefinite" /></circle>
+    <circle cx="75%" cy="0" r="2.5" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="8s" repeatCount="indefinite" /></circle>
+    <circle cx="85%" cy="0" r="2" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="14s" repeatCount="indefinite" /></circle>
+    <circle cx="90%" cy="0" r="1" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="28s" repeatCount="indefinite" /></circle>
+    <circle cx="95%" cy="0" r="1.5" fill="#d7c3a8"><animate attributeName="cy" to="100%" dur="12s" repeatCount="indefinite" /></circle>
+  </g>
+
+  <g class="ic-sun">
+    <ellipse style="fill:#d8d8d8; fill-opacity:0.4128; stroke:#d8d8d8; stroke-width:0.163421; opacity:0;" id="sun-large" cx="15%" cy="30%" rx="5%">
+      <animate attributeName="cx" from="15%" to="115%" dur="12s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="35%" to="50%" dur="12s" repeatCount="indefinite" />
+      <animate attributeName="opacity" from="0" to="0.6" dur="12s" repeatCount="indefinite" />
+      <animate attributeName="fill" from="#d8d8d8" to="#d8d8d8cc" dur="12s" repeatCount="indefinite" />
+      <animate attributeName="stroke" from="#d8d8d8" to="#d8d8d8cc" dur="12s" repeatCount="indefinite" />
+    </ellipse>
+    <ellipse style="fill:#d8d8d8; fill-opacity:0.4128; stroke:#d8d8d8; stroke-width:0.089856; opacity:0;" id="sun-small" cx="0%" cy="45%" rx="2%">
+      <animate attributeName="cx" from="-15%" to="105%" dur="12s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="65%" to="10%" dur="12s" repeatCount="indefinite" />
+      <animate attributeName="opacity" from="0" to="1" dur="12s" repeatCount="indefinite" />
+      <animate attributeName="fill" from="#d8d8d8" to="#d8d8d8cc" dur="12s" repeatCount="indefinite" />
+      <animate attributeName="stroke" from="#d8d8d8" to="#d8d8d8cc" dur="12s" repeatCount="indefinite" />
+    </ellipse>
+  </g>
+  
+</svg>
+</div>
