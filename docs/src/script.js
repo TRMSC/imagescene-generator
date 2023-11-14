@@ -242,8 +242,12 @@ handleFileSelect = (file) => {
         // Save values
         const originalWidth = img.width;
         const originalHeight = img.height;
-        
+
         // Transmit values
+        // Disabled input fields to show the original size of the image.
+        document.getElementById('imagescene-original-width').value = originalWidth;
+        document.getElementById('imagescene-original-height').value = originalHeight;
+
         let width = document.getElementById('imagescene-w');
         width.value = originalWidth;
         let height = document.getElementById('imagescene-h');
