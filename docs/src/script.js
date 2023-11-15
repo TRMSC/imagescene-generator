@@ -514,9 +514,14 @@ generateScene = () => {
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
       templateContent = templateContent.replace(/\$ALT/g, altInput.value);
 
-      // Put the generated code to the textarea and to results preview
+      // Put the generated code to the textarea
       document.getElementById('imagescene-result').value = templateContent;
+
+      // Handle preview
       document.getElementById('imagescene-result-preview').innerHTML = templateContent;
+      
+      // Handle preview depending on availability
+      // handleResultPreview(url, templateContent);
 
       // Copy code to the clipboard
       copyClipboard();
@@ -524,6 +529,44 @@ generateScene = () => {
     .catch(error => {
       console.error('Fetch error:', error);
     });
+
+};
+
+
+/**
+ * Check image url and implement preview if the source is available
+ * 
+ * @function handleResultPreview
+ * @returns {void}
+ * 
+ * @ignore
+ * This function is actually not implemented but maybe important for later.
+ * If the approach is to be used, it must be ensured that there are no overlaps with updates to the image scenes due to the calculation time.
+ *
+ */
+handleResultPreview = (url, content) => {
+
+  let testImage = new Image();
+  testImage.src = url
+
+  return new Promise((resolve) => {
+    testImage.onload = function() {
+      resolve(true);
+    };
+
+    testImage.onerror = function() {
+      resolve(false);
+    };
+  }).then((isValid) => {
+
+    if (isValid) {
+      document.getElementById('imagescene-result-preview').innerHTML = content;
+    } else {
+      document.getElementById('imagescene-result-preview').textContent = 
+        "Aktuell kann keine Vorschau angezeigt werden... Möglicherweise liegt das daran, dass die Bildquelle ";
+    }
+
+  });
 
 };
 
