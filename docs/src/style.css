@@ -55,6 +55,9 @@ h3 {
 .ic-d-none {
     display: none!important;
 }
+.ic-relative {
+    position: relative;
+}
 input[type="button"] {
     cursor: pointer;
     border-radius: 3px;
