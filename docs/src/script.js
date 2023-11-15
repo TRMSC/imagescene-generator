@@ -514,8 +514,9 @@ generateScene = () => {
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
       templateContent = templateContent.replace(/\$ALT/g, altInput.value);
 
-      // Put the generated code to the textarea
+      // Put the generated code to the textarea and to results preview
       document.getElementById('imagescene-result').value = templateContent;
+      document.getElementById('imagescene-result-preview').innerHTML = templateContent;
 
       // Copy code to the clipboard
       copyClipboard();
