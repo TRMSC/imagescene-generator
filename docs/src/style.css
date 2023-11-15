@@ -117,6 +117,15 @@ select {
     font-size: 11pt;
     background-color: #a1b1aa1a;
 }
+#imagescene-result-preview {
+    margin: 0.7rem 0rem;
+}
+.preview-container {
+    margin-top: 1.4rem;
+}
+#result-container {
+    margin-bottom: 0.7rem;
+}
 #imagescene-status {
     cursor: help;
     white-space: nowrap;
