@@ -509,7 +509,7 @@ generateScene = () => {
   // Show result
   let show = document.getElementById('resultpart');
   show.style.display = "";
-  scrollTarget('resultpart');
+  scrollTarget('resultpart', 150);
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
@@ -553,10 +553,13 @@ generateScene = () => {
  */
 handleResultPreview = () => {
 
+  // Create test image
   let testImage = new Image();
   testImage.src = url;
 
+  // Check image
   return new Promise((resolve) => {
+
     testImage.onload = function() {
       resolve(true);
     };
@@ -564,25 +567,37 @@ handleResultPreview = () => {
     testImage.onerror = function() {
       resolve(false);
     };
+
   }).then((isValid) => {
 
     if (isValid) {
+
+      // Image source is given
       document.getElementById('imagescene-result-preview').innerHTML = templateContent;
+
     } else {
+
+      // Image source isn't available
       document.getElementById('imagescene-result-preview').textContent = 
         "Für diese Bildszene kann keine Vorschau angezeigt werden. " +
         "Möglicherweise liegt das daran, dass die Bildquelle in einem passwortgeschützten Raum liegt " + 
         "(z.B. in Moodle) und im Browser dort aktuell keine Anmeldung besteht.";
+
     }
 
+    // Function for toggling visibility
     function toggleVisibility(elementId) {
       let element = document.getElementById(elementId);
       element.classList.toggle('ic-d-none');
     }
     
+    // Function calls for toggling
     toggleVisibility('result-preview-container');
     toggleVisibility('ic-preview-show');
-    toggleVisibility('ic-preview-hide');    
+    toggleVisibility('ic-preview-hide');
+
+    // Scroll to preview
+    scrollTarget('resultpart', 50);
 
   });
 
@@ -593,17 +608,18 @@ handleResultPreview = () => {
  * Scroll to target
  * 
  * @function scrollTarget
- * @param id The target ID
+ * @param {string} id The target ID
+ * @param {number} value The scrolling distance
  * @returns {void}
  *
  */
-scrollTarget = (id) => {
+scrollTarget = (id, value) => {
 
   // Get target
   const target = document.getElementById(id);
 
   // Calculate position
-  const targetPosition = target.getBoundingClientRect().top + window.scrollY - 50;
+  const targetPosition = target.getBoundingClientRect().top + window.scrollY - value;
 
   // Scroll to position
   window.scrollTo({
