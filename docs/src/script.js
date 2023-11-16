@@ -509,7 +509,7 @@ generateScene = () => {
   // Show result
   let show = document.getElementById('resultpart');
   show.style.display = "";
-  scrollResult();
+  scrollTarget('resultpart');
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
@@ -590,16 +590,17 @@ handleResultPreview = () => {
 
 
 /**
- * Scroll to result
+ * Scroll to target
  * 
- * @function scrollResult
+ * @function scrollTarget
+ * @param id The target ID
  * @returns {void}
  *
  */
-scrollResult = () => {
+scrollTarget = (id) => {
 
   // Get target
-  const target = document.getElementById('resultpart');
+  const target = document.getElementById(id);
 
   // Calculate position
   const targetPosition = target.getBoundingClientRect().top + window.scrollY - 50;
