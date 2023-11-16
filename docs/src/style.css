@@ -55,6 +55,9 @@ h3 {
 .ic-d-none {
     display: none!important;
 }
+.ic-relative {
+    position: relative;
+}
 input[type="button"] {
     cursor: pointer;
     border-radius: 3px;
@@ -116,6 +119,16 @@ select {
 #imagescene-result {
     font-size: 11pt;
     background-color: #a1b1aa1a;
+}
+#imagescene-result-preview {
+    margin: 0.7rem 0rem;
+    font-weight: bold;
+}
+.preview-container {
+    margin-top: 1.4rem;
+}
+#result-container {
+    margin-bottom: 0.7rem;
 }
 #imagescene-status {
     cursor: help;

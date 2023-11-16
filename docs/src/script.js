@@ -12,6 +12,8 @@
  * @param {array} templatesData Empty array for the templates.json content
  * @param {array} templatePath Path to the template directory depending on github or server adress
  * @param {string} originalFilename The filename that is used as default for download actions
+ * @param {string} url Stores the image source url
+ * @param {string} templateContent Includes the final content for templates imagescene
  * @param {array} shareData Site information for share method
  *
  */
@@ -19,6 +21,8 @@ let hasGenerated = false;
 let templatesData = [];
 let templatesPath;
 let originalFilename;
+let url;
+let templateContent;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
@@ -145,6 +149,12 @@ listenEvents = () => {
   // Generate scene
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
+
+  // Handle preview
+  let previewShowButton = document.getElementById('ic-preview-show');
+  previewShowButton.addEventListener('click', handleResultPreview);
+  let previewHideButton = document.getElementById('ic-preview-hide');
+  previewHideButton.addEventListener('click', handleResultPreview);
 
   // Copy to clipboard
   let clipboardButton = document.getElementById('imagescene-copy');
@@ -432,6 +442,14 @@ cleanGenerator = (way) => {
  */
 generateScene = () => {
 
+  // Hide preview
+  let resultPreviewContainer = document.getElementById('result-preview-container');
+  resultPreviewContainer.classList.add('ic-d-none');
+  let previewShow = document.getElementById('ic-preview-show');
+  previewShow.classList.remove('ic-d-none');
+  let previewHide = document.getElementById('ic-preview-hide');
+  previewHide.classList.add('ic-d-none');
+
   // Get user input
   let uInput = document.getElementById('imagescene-url');
   let content = uInput.value;
@@ -441,7 +459,7 @@ generateScene = () => {
 
   // Search for embedded url using regex
   const srcMatch = content.match(/src=["'](.*?)["']/);
-  let url = srcMatch ? srcMatch[1] : content;
+  url = srcMatch ? srcMatch[1] : content;
 
   // Get information for generating filename
   originalFilename = content.includes("data:image/") ? "/" + originalFilename : url;
@@ -491,14 +509,13 @@ generateScene = () => {
   // Show result
   let show = document.getElementById('resultpart');
   show.style.display = "";
-  scrollResult();
+  scrollTarget('resultpart', 150);
 
   // Get template
   let templateName = document.getElementById('imagescene-template').value;
   let template = templatesPath + templateName;
 
   // Fetch template content
-  let templateContent = '';
   fetch(template)
     .then(response => {
       // Check
@@ -528,19 +545,81 @@ generateScene = () => {
 
 
 /**
- * Scroll to result
+ * Check image url and implement preview if the source is available
  * 
- * @function scrollResult
+ * @function handleResultPreview
  * @returns {void}
  *
  */
-scrollResult = () => {
+handleResultPreview = () => {
+
+  // Create test image
+  let testImage = new Image();
+  testImage.src = url;
+
+  // Check image
+  return new Promise((resolve) => {
+
+    testImage.onload = function() {
+      resolve(true);
+    };
+
+    testImage.onerror = function() {
+      resolve(false);
+    };
+
+  }).then((isValid) => {
+
+    if (isValid) {
+
+      // Image source is given
+      document.getElementById('imagescene-result-preview').innerHTML = templateContent;
+
+    } else {
+
+      // Image source isn't available
+      document.getElementById('imagescene-result-preview').textContent = 
+        "Für diese Bildszene kann keine Vorschau angezeigt werden. " +
+        "Möglicherweise liegt das daran, dass die Bildquelle in einem passwortgeschützten Raum liegt " + 
+        "(z.B. in Moodle) und im Browser dort aktuell keine Anmeldung besteht.";
+
+    }
+
+    // Function for toggling visibility
+    function toggleVisibility(elementId) {
+      let element = document.getElementById(elementId);
+      element.classList.toggle('ic-d-none');
+    }
+    
+    // Function calls for toggling
+    toggleVisibility('result-preview-container');
+    toggleVisibility('ic-preview-show');
+    toggleVisibility('ic-preview-hide');
+
+    // Scroll to preview
+    scrollTarget('resultpart', 50);
+
+  });
+
+};
+
+
+/**
+ * Scroll to target
+ * 
+ * @function scrollTarget
+ * @param {string} id The target ID
+ * @param {number} value The scrolling distance
+ * @returns {void}
+ *
+ */
+scrollTarget = (id, value) => {
 
   // Get target
-  const target = document.getElementById('resultpart');
+  const target = document.getElementById(id);
 
   // Calculate position
-  const targetPosition = target.getBoundingClientRect().top + window.scrollY - 50;
+  const targetPosition = target.getBoundingClientRect().top + window.scrollY - value;
 
   // Scroll to position
   window.scrollTo({
