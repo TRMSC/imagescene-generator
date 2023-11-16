@@ -528,12 +528,6 @@ generateScene = () => {
       // Put the generated code to the textarea
       document.getElementById('imagescene-result').value = templateContent;
 
-      // Handle preview
-      //document.getElementById('imagescene-result-preview').innerHTML = templateContent;
-      
-      // Handle preview depending on availability
-      // handleResultPreview(url, templateContent);
-
       // Copy code to the clipboard
       copyClipboard();
     })
@@ -549,10 +543,6 @@ generateScene = () => {
  * 
  * @function handleResultPreview
  * @returns {void}
- * 
- * @ignore
- * This function is actually not implemented but maybe important for later.
- * If the approach is to be used, it must be ensured that there are no overlaps with updates to the image scenes due to the calculation time.
  *
  */
 handleResultPreview = () => {
