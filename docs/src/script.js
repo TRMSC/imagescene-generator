@@ -13,6 +13,7 @@
  * @param {array} templatePath Path to the template directory depending on github or server adress
  * @param {string} originalFilename The filename that is used as default for download actions
  * @param {string} url Stores the image source url
+ * @param {string} templateContent Includes the final content for templates imagescene
  * @param {array} shareData Site information for share method
  *
  */
@@ -21,6 +22,7 @@ let templatesData = [];
 let templatesPath;
 let originalFilename;
 let url;
+let templateContent;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
@@ -149,7 +151,7 @@ listenEvents = () => {
   generateButton.addEventListener('click', generateScene);
 
   // Handle preview
-  let previewButton = document.getElementById('imagescene-result-preview');
+  let previewButton = document.getElementById('ic-preview-show');
   previewButton.addEventListener('click', handleResultPreview);
 
   // Copy to clipboard
@@ -438,6 +440,10 @@ cleanGenerator = (way) => {
  */
 generateScene = () => {
 
+  // Hide preview
+  let resultPreviewContainer = document.getElementById('result-preview-container');
+  resultPreviewContainer.classList.add('ic-d-none');
+
   // Get user input
   let uInput = document.getElementById('imagescene-url');
   let content = uInput.value;
@@ -504,7 +510,6 @@ generateScene = () => {
   let template = templatesPath + templateName;
 
   // Fetch template content
-  let templateContent = '';
   fetch(template)
     .then(response => {
       // Check
@@ -524,7 +529,7 @@ generateScene = () => {
       document.getElementById('imagescene-result').value = templateContent;
 
       // Handle preview
-      document.getElementById('imagescene-result-preview').innerHTML = templateContent;
+      //document.getElementById('imagescene-result-preview').innerHTML = templateContent;
       
       // Handle preview depending on availability
       // handleResultPreview(url, templateContent);
@@ -550,10 +555,10 @@ generateScene = () => {
  * If the approach is to be used, it must be ensured that there are no overlaps with updates to the image scenes due to the calculation time.
  *
  */
-handleResultPreview = (url, content) => {
+handleResultPreview = () => {
 
   let testImage = new Image();
-  testImage.src = url
+  testImage.src = url;
 
   return new Promise((resolve) => {
     testImage.onload = function() {
@@ -566,11 +571,16 @@ handleResultPreview = (url, content) => {
   }).then((isValid) => {
 
     if (isValid) {
-      document.getElementById('imagescene-result-preview').innerHTML = content;
+      document.getElementById('imagescene-result-preview').innerHTML = templateContent;
     } else {
       document.getElementById('imagescene-result-preview').textContent = 
-        "Aktuell kann keine Vorschau angezeigt werden... Möglicherweise liegt das daran, dass die Bildquelle ";
+        "Für diese Bildszene kann keine Vorschau angezeigt werden. " +
+        "Möglicherweise liegt das daran, dass die Bildquelle in einem passwortgeschützten Raum liegt " + 
+        "(z.B. in Moodle) und im Browser dort aktuell keine Anmeldung besteht.";
     }
+
+    let resultPreviewContainer = document.getElementById('result-preview-container');
+    resultPreviewContainer.classList.toggle('ic-d-none');
 
   });
 
