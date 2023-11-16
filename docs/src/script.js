@@ -252,8 +252,12 @@ handleFileSelect = (file) => {
         // Save values
         const originalWidth = img.width;
         const originalHeight = img.height;
-        
+
         // Transmit values
+        // Disabled input fields to show the original size of the image.
+        document.getElementById('imagescene-original-width').value = originalWidth;
+        document.getElementById('imagescene-original-height').value = originalHeight;
+
         let width = document.getElementById('imagescene-w');
         width.value = originalWidth;
         let height = document.getElementById('imagescene-h');
@@ -262,6 +266,12 @@ handleFileSelect = (file) => {
         // Set Data URI directly to the textarea
         let textarea = document.getElementById('imagescene-url');
         textarea.value = dataUri;
+
+        // Preview of input image.
+        let preview = document.getElementById('imagescene-preview-generator');
+        preview.src = dataUri;
+        preview.width = originalWidth;
+        preview.height = originalHeight;
 
         // Save filename
         originalFilename = file.name;
@@ -534,7 +544,11 @@ generateScene = () => {
       // Put the generated code to the textarea
       document.getElementById('imagescene-result').value = templateContent;
 
-      // Copy code to the clipboard
+      // Put the generated code also to result preview.
+      let imagesceneResultPreview = document.getElementById('imagescene-result-preview');
+      imagesceneResultPreview.innerHTML = templateContent;
+
+          // Copy code to the clipboard
       copyClipboard();
     })
     .catch(error => {

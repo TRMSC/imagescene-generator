@@ -149,10 +149,26 @@
           <textarea class="generate" id="imagescene-url" name="imagescene-url" rows="3" spellcheck="false" wrap="off"></textarea>
         </div>
         <div class="input-container">
+          <label for="imagescene-preview-generator" class="miniheading">Input preview:</label>
+          <img id="imagescene-preview-generator">
+        </div>
+        <div class="input-container">
           <sub>
             Der Generator ruft die verwendete URL nicht auf, sondern verpackt diese zusammen mit dem animierten Overlay in einen SVG-Code.
           </sub>
         </div>
+
+        <div class="select-container">
+          <div>
+            <label for="imagescene-original-width">originale Breite:</label>
+            <input disabled type="number" id="imagescene-original-width" name="imagescene-original-width" min="0">
+          </div>
+          <div>
+            <label for="imagescene-original-height">original Höhe:</label>
+            <input disabled type="number" id="imagescene-original-height" name="imagescene-original-height" min="0">
+          </div>
+        </div>
+
         <div class="select-container">
           <div>
             <label for="imagescene-w">Breite:</label>
@@ -226,6 +242,10 @@
           <label for="imagescene-result" class="miniheading">Code:</label>
           <textarea id="imagescene-result" name="imagescene-result" rows="6" spellcheck="false" wrap="off" readonly></textarea>
         </div>
+
+        <div id="imagescene-result-preview">
+        </div>
+
         <div id="result-container">
           <input id="imagescene-copy" class="s-w-100" type="button" value="In die Zwischenablage kopieren">
           <input id="imagescene-download-html" class="s-w-100" type="button" value="Als HTML-Datei herunterladen">
