@@ -445,6 +445,10 @@ generateScene = () => {
   // Hide preview
   let resultPreviewContainer = document.getElementById('result-preview-container');
   resultPreviewContainer.classList.add('ic-d-none');
+  let previewShow = document.getElementById('ic-preview-show');
+  previewShow.classList.remove('ic-d-none');
+  let previewHide = document.getElementById('ic-preview-hide');
+  previewHide.classList.add('ic-d-none');
 
   // Get user input
   let uInput = document.getElementById('imagescene-url');
