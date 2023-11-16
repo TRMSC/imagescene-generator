@@ -151,8 +151,10 @@ listenEvents = () => {
   generateButton.addEventListener('click', generateScene);
 
   // Handle preview
-  let previewButton = document.getElementById('ic-preview-show');
-  previewButton.addEventListener('click', handleResultPreview);
+  let previewShowButton = document.getElementById('ic-preview-show');
+  previewShowButton.addEventListener('click', handleResultPreview);
+  let previewHideButton = document.getElementById('ic-preview-hide');
+  previewHideButton.addEventListener('click', handleResultPreview);
 
   // Copy to clipboard
   let clipboardButton = document.getElementById('imagescene-copy');
@@ -569,8 +571,14 @@ handleResultPreview = () => {
         "(z.B. in Moodle) und im Browser dort aktuell keine Anmeldung besteht.";
     }
 
-    let resultPreviewContainer = document.getElementById('result-preview-container');
-    resultPreviewContainer.classList.toggle('ic-d-none');
+    function toggleVisibility(elementId) {
+      let element = document.getElementById(elementId);
+      element.classList.toggle('ic-d-none');
+    }
+    
+    toggleVisibility('result-preview-container');
+    toggleVisibility('ic-preview-show');
+    toggleVisibility('ic-preview-hide');    
 
   });
 
