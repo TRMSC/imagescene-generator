@@ -146,6 +146,10 @@ listenEvents = () => {
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
 
+  // Handle preview
+  let previewButton = document.getElementById('imagescene-result-preview');
+  previewButton.addEventListener('click', handleResultPreview);
+
   // Copy to clipboard
   let clipboardButton = document.getElementById('imagescene-copy');
   clipboardButton.addEventListener('click', copyClipboard);
