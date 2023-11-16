@@ -122,6 +122,7 @@ select {
 }
 #imagescene-result-preview {
     margin: 0.7rem 0rem;
+    font-weight: bold;
 }
 .preview-container {
     margin-top: 1.4rem;
