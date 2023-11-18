@@ -569,7 +569,7 @@ modifyContent = (action, content) => {
     lines.splice(1, 0, '');
 
     // Add div tag
-    let div = '<div class="imagescene">';
+    let div = '<div class="imagescene"' + getStyle() + '>';
     lines.splice(2, 0, div);
 
     // Add an empty penultimate line
@@ -602,6 +602,31 @@ modifyContent = (action, content) => {
 
   // Return modified content
   return modifiedContent;
+
+};
+
+
+/**
+ * Get style from the user input
+ * 
+ * @function getStyle
+ * @returns {string} The style for html content
+ * @todo Add concrete styles instead of the example line
+ *
+ */
+getStyle = () => {
+
+  // Open style tag
+  let style = ' style="';
+
+  // Add styles (EXAMPLE FOR LATER)
+  style += 'property: value';
+
+  // Close style tag
+  style += '"';
+
+  // Return style tag
+  return style;
 
 };
 
