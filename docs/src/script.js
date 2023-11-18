@@ -556,8 +556,6 @@ generateScene = () => {
  * @param {string} action Add or remove modifications
  * @param {string} content The content that should be added
  * @returns {string} Modified content
- * 
- * @todo Instead of adding and removing a div it is neccessary to modify only the svg line for adding and removing the style...
  *
  */
 modifyContent = (action, content) => {
@@ -566,38 +564,21 @@ modifyContent = (action, content) => {
 
   if (action === 'add') {
 
-    // Add indentations
-    lines = lines.map((line, index) => (index >= 2 ? '  ' : '') + line);   
+    // Store original svg tag
+    originSvgTag = lines[2];
 
-    // Add an empty line 2
-    lines.splice(1, 0, '');
+    // Add styles
+    let cssContent = document.getElementById('ic-css').value;
+    let css = cssContent.replace(/;/g, '; ').replace(/\n/g, '').replace(/ +/g, ' ');
+    let style = cssContent.length > 0 ? ' style="' + css + '"' : '';
 
-    // Add div tag
-    let div = '<div class="imagescene"' + getStyle() + '>';
-    lines.splice(2, 0, div);
-
-    // Add an empty penultimate line
-    if (lines[lines.length - 1] !== '  ') lines.splice(lines.length - 1, 0, '');
-
-    // Close the div in the last line
-    lines.push('</div>');
+    // Implement style
+    lines[2] = lines[2].slice(0, -1) + style + lines[2].slice(-1);
 
   } else if (action === 'remove') {
 
-    // Remove line 2 and 3
-    lines.splice(1, 3);
-
-    // Remove the last line
-    lines.pop();
-
-    // Remove indentations
-    lines = lines.map((line, index) => (index >= 1 ? line.replace(/^  /, '') : line));
-
-    // Add XML declaration for SVG type
-    lines.splice(0, 0, `<?xml version="1.0" encoding="UTF-8" standalone="no"?>`);
-
-    // Add an empty line 2
-    lines.splice(1, 0, '');
+    // Use the original svg tag
+    lines[2] = originSvgTag;
 
   }
 
@@ -606,32 +587,6 @@ modifyContent = (action, content) => {
 
   // Return modified content
   return modifiedContent;
-
-};
-
-
-/**
- * Get style from the user input
- * 
- * @function getStyle
- * @returns {string} The style for html content
- *
- */
-getStyle = () => {
-
-  // Open style tag
-  let style = ' style="';
-
-  // Add styles
-  let cssContent = document.getElementById('ic-css').value;
-  let css = cssContent.replace(/;/g, '; ').replace(/\n/g, '').replace(/ +/g, ' ');
-  style += css;
-
-  // Close style tag
-  style += '"';
-
-  // Return style tag
-  return style;
 
 };
 
