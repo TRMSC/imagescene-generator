@@ -611,7 +611,6 @@ modifyContent = (action, content) => {
  * 
  * @function getStyle
  * @returns {string} The style for html content
- * @todo Add concrete styles instead of the example line
  *
  */
 getStyle = () => {
@@ -619,8 +618,10 @@ getStyle = () => {
   // Open style tag
   let style = ' style="';
 
-  // Add styles (EXAMPLE FOR LATER)
-  style += 'property: value';
+  // Add styles
+  let cssContent = document.getElementById('ic-css').value;
+  let css = cssContent.replace(/;/g, '; ').replace(/\n/g, '').replace(/ +/g, ' ');
+  style += css;
 
   // Close style tag
   style += '"';
