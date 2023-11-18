@@ -148,6 +148,13 @@ listenEvents = () => {
     cleanGenerator('clean');
   });
 
+  // Use text cubes
+  document.querySelectorAll('.ic-css-cube').forEach(cube => {
+    cube.addEventListener('click', function(event) {
+      insertCube(event.currentTarget.dataset.rule);
+    }); 
+  });
+
   // Generate scene
   let generateButton = document.getElementById('imagescene-generate');
   generateButton.addEventListener('click', generateScene);
@@ -431,6 +438,28 @@ cleanGenerator = (way) => {
     loadTemplates();
 
   }
+
+};
+
+
+/**
+ * Insert text cube from html dataset rule
+ * 
+ * @function insertCube
+ * @param {string} rule The css rule
+ * @returns {void}
+ *
+ */
+insertCube = (rule) => {
+
+  // Declare variable
+  let textarea = document.getElementById('ic-css');
+
+  // Add new line if textarea isn't empty
+  if (textarea.value.trim() !== '') textarea.value += '\n';
+
+  // Add rule
+  textarea.value = rule;
 
 };
 
