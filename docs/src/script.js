@@ -569,7 +569,7 @@ modifyContent = (action, content) => {
 
     // Add styles
     let cssContent = document.getElementById('ic-css').value;
-    let css = cssContent.replace(/;/g, '; ').replace(/\n/g, '').replace(/ +/g, ' ');
+    let css = cssContent.replace(/;/g, '; ').replace(/\n/g, '').replace(/ +$/g, '');
     let style = cssContent.length > 0 ? ' style="' + css + '"' : '';
 
     // Implement style
