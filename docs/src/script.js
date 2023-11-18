@@ -403,7 +403,7 @@ cleanGenerator = (way) => {
   let clean = document.getElementById('imagescene-clean');
   let generatePart = document.getElementById('generatepart');
   let inputFields = generatePart.querySelectorAll('input[type="number"]');
-  let textAreas = generatePart.querySelectorAll('textarea');
+  let textAreas = generatePart.querySelectorAll('.clean');
   let templateSelect = document.getElementById('imagescene-template');
   let defaultTemplate = 'indian-summer.raw';
 
