@@ -562,6 +562,9 @@ modifyContent = (action, content) => {
 
   if (action === 'add') {
 
+    // Add indentations
+    lines = lines.map((line, index) => (index >= 2 ? '  ' : '') + line);   
+
     // Add an empty line 2
     lines.splice(1, 0, '');
 
@@ -570,7 +573,7 @@ modifyContent = (action, content) => {
     lines.splice(2, 0, div);
 
     // Add an empty penultimate line
-    if (lines[lines.length - 1] !== '') lines.splice(lines.length - 1, 0, '');
+    if (lines[lines.length - 1] !== '  ') lines.splice(lines.length - 1, 0, '');
 
     // Close the div in the last line
     lines.push('</div>');
@@ -582,6 +585,9 @@ modifyContent = (action, content) => {
 
     // Remove the last line
     lines.pop();
+
+    // Remove indentations
+    lines = lines.map((line, index) => (index >= 1 ? line.replace(/^  /, '') : line));
 
     // Add XML declaration for SVG type
     lines.splice(0, 0, `<?xml version="1.0" encoding="UTF-8" standalone="no"?>`);
