@@ -14,6 +14,7 @@
  * @param {string} originalFilename The filename that is used as default for download actions
  * @param {string} url Stores the image source url
  * @param {string} templateContent Includes the final content for templates imagescene
+ * @param {string} originSvgTag Stores the original svg tag without individual css
  * @param {array} shareData Site information for share method
  *
  */
@@ -23,6 +24,7 @@ let templatesPath;
 let originalFilename;
 let url;
 let templateContent;
+let originSvgTag;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
