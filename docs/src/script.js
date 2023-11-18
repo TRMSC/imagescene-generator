@@ -531,6 +531,9 @@ generateScene = () => {
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
       templateContent = templateContent.replace(/\$ALT/g, altInput.value);
 
+      // Add html addons
+      templateContent = modifyContent('add', templateContent);
+
       // Put the generated code to the textarea
       document.getElementById('imagescene-result').value = templateContent;
 
@@ -540,6 +543,59 @@ generateScene = () => {
     .catch(error => {
       console.error('Fetch error:', error);
     });
+
+};
+
+
+/**
+ * Modify content by adding or replacing div and html options
+ * 
+ * @function modifyContent
+ * @param {string} action Add or remove modifications
+ * @param {string} content The content that should be added
+ * @returns {string} Modified content
+ *
+ */
+modifyContent = (action, content) => {
+
+  let lines = content.split('\n');
+
+  if (action === 'add') {
+
+    // Add an empty line 2
+    lines.splice(1, 0, '');
+
+    // Add div tag
+    let div = '<div class="imagescene">';
+    lines.splice(2, 0, div);
+
+    // Add an empty penultimate line
+    if (lines[lines.length - 1] !== '') lines.splice(lines.length - 1, 0, '');
+
+    // Close the div in the last line
+    lines.push('</div>');
+
+  } else if (action === 'remove') {
+
+    // Remove line 2 and 3
+    lines.splice(1, 3);
+
+    // Remove the last line
+    lines.pop();
+
+    // Add XML declaration for SVG type
+    lines.splice(0, 0, `<?xml version="1.0" encoding="UTF-8" standalone="no"?>`);
+
+    // Add an empty line 2
+    lines.splice(1, 0, '');
+
+  }
+
+  // Connect remaining lines
+  let modifiedContent = lines.join('\n');
+
+  // Return modified content
+  return modifiedContent;
 
 };
 
@@ -730,9 +786,8 @@ downloadFile = (type) => {
     .replace('{type}', type);
   let filename = userInput.value.trim() !== '' ? userInput.value + '.' + type : option;
 
-
-  // Add XML declaration for SVG type
-  if (type === 'svg') html = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${html}`;
+  // Modify content for SVG type
+  html = type === 'svg' ? modifyContent('remove', html) : html;
 
   // Handle blob
   const blob = new Blob([html], { type: 'text/html' });
