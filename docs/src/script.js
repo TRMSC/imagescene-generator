@@ -554,6 +554,8 @@ generateScene = () => {
  * @param {string} action Add or remove modifications
  * @param {string} content The content that should be added
  * @returns {string} Modified content
+ * 
+ * @todo Instead of adding and removing a div it is neccessary to modify only the svg line for adding and removing the style...
  *
  */
 modifyContent = (action, content) => {
