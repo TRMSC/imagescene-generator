@@ -91,6 +91,26 @@ input[type="button"]:hover {
 .select-container input {
     width: 80px;
 }
+.expand-container {
+    margin: 20px 0px 10px 0px;
+}
+.expand-container summary {
+    list-style-type: none;
+    cursor: pointer;
+    color: #695753;
+    border: 1px solid #695753;
+    padding: 2px 8px;
+    width: fit-content;
+}
+summary::-webkit-details-marker {
+    display: none;
+}
+details:not([open]) summary::after {
+    content: " \23F7";
+}
+details[open] summary::after {
+    content: " \23F6"; 
+}
 select {
     font-size: 12pt;
 }
@@ -189,5 +209,10 @@ footer {
     }
     .s-w-100 {
         width: 100%;
+    }
+    .expand-container summary {
+        width: auto;
+        display: flex;
+        justify-content: space-between;
     }
 }
