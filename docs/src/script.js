@@ -14,6 +14,7 @@
  * @param {string} originalFilename The filename that is used as default for download actions
  * @param {string} url Stores the image source url
  * @param {string} templateContent Includes the final content for templates imagescene
+ * @param {string} originSvgTag Stores the original svg tag without individual css
  * @param {array} shareData Site information for share method
  *
  */
@@ -23,6 +24,7 @@ let templatesPath;
 let originalFilename;
 let url;
 let templateContent;
+let originSvgTag;
 const shareData = {
   title: 'Imagescene Generator | TRMSC',
   text: 'Create dynamic scenes from images | TRMSC',
@@ -128,22 +130,34 @@ listenEvents = () => {
     changeStatus();
   });
 
-  // Update status when width input was changes
+  // Update status when width input was changed
   let width = document.getElementById('imagescene-w');
   width.addEventListener('input', changeStatus);
 
-  // Update status when height input was changes
+  // Update status when height input was changed
   let height = document.getElementById('imagescene-h');
   height.addEventListener('input', changeStatus);
 
-  // Update status when alt input was changes
+  // Update status when alt input was changed
   let alt = document.getElementById('imagescene-alt');
   alt.addEventListener('input', changeStatus);
+
+  // Update status when css input was changed
+  let css = document.getElementById('ic-css');
+  css.addEventListener('input', changeStatus);
 
   // Clean generator fields
   let clean = document.getElementById('imagescene-clean');
   clean.addEventListener('click', function() {
     cleanGenerator('clean');
+  });
+
+  // Use text cubes
+  document.querySelectorAll('.ic-css-cube').forEach(cube => {
+    cube.addEventListener('click', function(event) {
+      insertCube(event.currentTarget.dataset.rule);
+      changeStatus();
+    }); 
   });
 
   // Generate scene
@@ -401,7 +415,7 @@ cleanGenerator = (way) => {
   let clean = document.getElementById('imagescene-clean');
   let generatePart = document.getElementById('generatepart');
   let inputFields = generatePart.querySelectorAll('input[type="number"]');
-  let textAreas = generatePart.querySelectorAll('textarea');
+  let textAreas = generatePart.querySelectorAll('.clean');
   let templateSelect = document.getElementById('imagescene-template');
   let defaultTemplate = 'indian-summer.raw';
 
@@ -429,6 +443,33 @@ cleanGenerator = (way) => {
     loadTemplates();
 
   }
+
+};
+
+
+/**
+ * Insert text cube from html dataset rule
+ * 
+ * @function insertCube
+ * @param {string} rule The css rule
+ * @returns {void}
+ *
+ */
+insertCube = (rule) => {
+
+  // Declare variable
+  let textarea = document.getElementById('ic-css');
+
+  // Remove rule if it has already been added
+  if (textarea.value.includes(rule)) {
+    textarea.value = textarea.value.replace(new RegExp(rule + '\\n?', 'g'), '');
+  } else {
+    // Add new line if textarea isn't empty and paste rule
+    textarea.value += (textarea.value.trim() !== '') ? '\n' + rule : rule;
+  }
+
+  // Remove empty lines
+  textarea.value = textarea.value.replace(/^\s*[\r\n]/gm, '');
 
 };
 
@@ -531,6 +572,9 @@ generateScene = () => {
       templateContent = templateContent.replace(/\$HEIGHT/g, hInput.value);
       templateContent = templateContent.replace(/\$ALT/g, altInput.value);
 
+      // Add html addons
+      templateContent = modifyContent('add', templateContent);
+
       // Put the generated code to the textarea
       document.getElementById('imagescene-result').value = templateContent;
 
@@ -540,6 +584,48 @@ generateScene = () => {
     .catch(error => {
       console.error('Fetch error:', error);
     });
+
+};
+
+
+/**
+ * Modify content by adding or replacing div and html options
+ * 
+ * @function modifyContent
+ * @param {string} action Add or remove modifications
+ * @param {string} content The content that should be added
+ * @returns {string} Modified content
+ *
+ */
+modifyContent = (action, content) => {
+
+  let lines = content.split('\n');
+
+  if (action === 'add') {
+
+    // Store original svg tag
+    originSvgTag = lines[2];
+
+    // Add styles
+    let cssContent = document.getElementById('ic-css').value;
+    let css = cssContent.replace(/;/g, '; ').replace(/\n/g, '').replace(/ +$/g, '');
+    let style = cssContent.length > 0 ? ' style="' + css + '"' : '';
+
+    // Implement style
+    lines[2] = lines[2].slice(0, -1) + style + lines[2].slice(-1);
+
+  } else if (action === 'remove') {
+
+    // Use the original svg tag
+    lines[2] = originSvgTag;
+
+  }
+
+  // Connect remaining lines
+  let modifiedContent = lines.join('\n');
+
+  // Return modified content
+  return modifiedContent;
 
 };
 
@@ -730,9 +816,8 @@ downloadFile = (type) => {
     .replace('{type}', type);
   let filename = userInput.value.trim() !== '' ? userInput.value + '.' + type : option;
 
-
-  // Add XML declaration for SVG type
-  if (type === 'svg') html = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${html}`;
+  // Modify content for SVG type
+  html = type === 'svg' ? modifyContent('remove', html) : html;
 
   // Handle blob
   const blob = new Blob([html], { type: 'text/html' });

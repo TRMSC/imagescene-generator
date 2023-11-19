@@ -29,7 +29,7 @@
   </head>
   <body>
 
-      <svg class="ic-banner" width="100%" viewBox="0 0 283.70926 159.00189" xmlns="http://www.w3.org/2000/svg">
+      <svg id="ic-welcome" class="ic-banner" width="100%" viewBox="0 0 283.70926 159.00189" xmlns="http://www.w3.org/2000/svg">
         <g class="hero-image">
           <image width="283.70926" height="159.00189" alt="Mittelalterliche Szene im Spätsommer mit alten Häusern, rötlich-gelben Baumkronen und animiertem Staub sowie Lichtreflexen" xlink:href="img/imagescene-banner.png" />
         </g>
@@ -128,7 +128,7 @@
             Generator
           </h3>
           <span id="imagescene-clean" class="ic-font-3 ic-hidden" title="Felder leeren">
-            <img class="ic-icon-3" src="icons/broom.svg">
+            <img class="ic-icon-3" src="icons/broom.svg" alt="Besen">
           </span>
         </div>
 
@@ -146,7 +146,7 @@
         </div>
         <div class="input-container">
           <label for="imagescene-url" class="miniheading">Alleinstehende Bildadresse oder Code-Schnipsel mit einem Image-Tag:</label>
-          <textarea class="generate" id="imagescene-url" name="imagescene-url" rows="3" spellcheck="false" wrap="off"></textarea>
+          <textarea class="clean" id="imagescene-url" name="imagescene-url" rows="3" spellcheck="false" wrap="off"></textarea>
         </div>
         <div class="select-container">
           <div>
@@ -177,12 +177,41 @@
         </div>
         <div class="input-container">
           <label for="imagescene-alt" class="miniheading">Alt-Tag:</label>
-          <textarea class="generate" id="imagescene-alt" name="imagescene-alt" rows="1" spellcheck="false" wrap="off"></textarea>
+          <textarea class="clean" id="imagescene-alt" name="imagescene-alt" rows="1" spellcheck="false" wrap="off"></textarea>
         </div>
         <div class="input-container">
           <sub>
              Die Verwendung einer alternativen Bildbeschreibung ist optional, wird jedoch aus Gründen der Barrierefreiheit empfohlen.
           </sub>
+        </div>
+        <div class="expand-container">
+          <details>
+            <summary>
+              <span>Erweiterte Anpassungen</span>
+              <img id="ic-expand-closed" src="icons/caret-down.svg" alt="Pfeil nach unten">
+              <img id="ic-expand-opened" src="icons/caret-up.svg" alt="Pfeil nach oben"></summary>
+              <div class="input-container">
+                <label for="ic-css" class="miniheading">Individuelles CSS für HTML-Ergebnisse:</label>
+                <textarea class="expand" id="ic-css" name="ic-css" rows="6" spellcheck="false" wrap="off"></textarea>
+              </div>
+              <div class="ic-tag-container">
+                <button class="ic-css-cube" data-rule="border-radius: 10px;">Abgerundete Ecken</button>
+                <button class="ic-css-cube" data-rule="box-shadow: 8px -8px 20px 2px #d9d9d9;">Schatten</button>
+                <button class="ic-css-cube" data-rule="border: 2px solid #695753;">Umrandung</button>
+                <button class="ic-css-cube" data-rule="width: 200px;">Breite</button>
+                <button class="ic-css-cube" data-rule="max-width: 400px;">Maximalbreite</button>
+                <button class="ic-css-cube" data-rule="height: 150px;">Höhe</button>
+                <button class="ic-css-cube" data-rule="max-height: 300px;">Maximalhöhe</button>
+              </div>
+              <sub>
+                CSS-Regeln werden in dieser Form angegeben: <i><u>eigenschaft1: wert1; eigenschaft2: wert2; usw...</u></i>
+                Zur Übersichtlichkeit können Eigenschaften auch in einer neuen Zeile beginnen.
+                <b>
+                  Das Einfügen von individuellem CSS ist eine experimentelle Funktion. 
+                  Verschachtelte Regeln, doppelte Anführungszeichen usw. werden möglicherweise noch nicht unterstützt.
+                </b>
+              </sub>
+          </details>
         </div>
         <p>
           <input type="button" id="imagescene-generate" class="bigbutton s-w-100" value='Szene generieren'>
@@ -195,10 +224,10 @@
             Ergebnis
           </h3>
           <span id="ic-preview-show" class="ic-font-3" title="Vorschau zeigen">
-            <img class="ic-icon-3" src="icons/eye.svg">
+            <img class="ic-icon-3" src="icons/eye.svg" alt="Offenes Auge">
           </span>
           <span id="ic-preview-hide" class="ic-font-3 ic-d-none" title="Vorschau verbergen">
-            <img class="ic-icon-3" src="icons/eye-slash.svg">
+            <img class="ic-icon-3" src="icons/eye-slash.svg" alt="Durchgestrichenes Auge">
           </span>
         </div>
         <div class="input-container">
@@ -215,7 +244,7 @@
           </div>
         </div>
         <div class="input-container">
-          <textarea class="generate ic-no-overflow" id="imagescene-filename" name="imagescene-filename" rows="1" spellcheck="false" wrap="off" placeholder="Alternativ kann ein eigener Dateiname vergeben werden (ohne Dateiendung)..."></textarea>
+          <textarea class="ic-no-overflow" id="imagescene-filename" name="imagescene-filename" rows="1" spellcheck="false" wrap="off" placeholder="Alternativ kann ein eigener Dateiname vergeben werden (ohne Dateiendung)..."></textarea>
         </div>
         <div class="input-container">
           <label for="imagescene-result" class="miniheading">Code:</label>
