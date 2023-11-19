@@ -95,6 +95,8 @@ input[type="button"]:hover {
     margin: 20px 0px 10px 0px;
 }
 .expand-container summary {
+    display: flex;
+    align-items: center;
     list-style-type: none;
     cursor: pointer;
     color: #695753;
@@ -102,17 +104,23 @@ input[type="button"]:hover {
     padding: 2px 8px;
     width: fit-content;
 }
+.expand-container summary img {
+    display: block;
+    width: 12pt;
+    height: 12pt;
+    padding-left: 3pt;
+}
 summary::-webkit-details-marker {
     display: none;
 }
 summary:hover {
     background-color: #ffffff47;
 }
-details:not([open]) summary::after {
-    content: " \23F7";
+details:not([open]) summary #ic-expand-opened {
+    display: none;
 }
-details[open] summary::after {
-    content: " \23F6"; 
+details[open] summary #ic-expand-closed {
+    display: none;
 }
 .ic-tag-container {
     display: flex;
