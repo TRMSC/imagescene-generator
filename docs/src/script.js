@@ -169,6 +169,8 @@ listenEvents = () => {
   previewShowButton.addEventListener('click', handleResultPreview);
   let previewHideButton = document.getElementById('ic-preview-hide');
   previewHideButton.addEventListener('click', handleResultPreview);
+  let previewButton = document.getElementById('imagescene-preview');
+  previewButton.addEventListener('click', handleResultPreview);
 
   // Copy to clipboard
   let clipboardButton = document.getElementById('imagescene-copy');
