@@ -123,7 +123,7 @@ details[open] summary::after {
     width: fit-content;
     padding: 0px 4px;
     font-family: monospace;
-    font-size: 10pt;
+    font-size: smaller;
 }
 select {
     font-size: 12pt;
