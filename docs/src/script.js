@@ -455,11 +455,13 @@ insertCube = (rule) => {
   // Declare variable
   let textarea = document.getElementById('ic-css');
 
-  // Add new line if textarea isn't empty
-  if (textarea.value.trim() !== '') textarea.value += '\n';
-
-  // Add rule
-  textarea.value += rule;
+  // Remove rule if it has already been added
+  if (textarea.value.includes(rule)) {
+    textarea.value = textarea.value.replace(new RegExp(rule + '\\n?', 'g'), '');
+  } else {
+    // Add new line if textarea isn't empty and paste rule
+    textarea.value += (textarea.value.trim() !== '') ? '\n' + rule : rule;
+  }
 
 };
 
