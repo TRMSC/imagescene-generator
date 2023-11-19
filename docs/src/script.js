@@ -152,6 +152,12 @@ listenEvents = () => {
     cleanGenerator('clean');
   });
 
+  // Scroll to expand section
+  let expand = document.getElementById('ic-expand');
+  expand.addEventListener('click', function() {
+    scrollTarget('ic-expand', 150);
+  });
+
   // Use text cubes
   document.querySelectorAll('.ic-css-cube').forEach(cube => {
     cube.addEventListener('click', function(event) {
