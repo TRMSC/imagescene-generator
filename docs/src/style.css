@@ -117,6 +117,7 @@ details[open] summary::after {
 .ic-tag-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 6px;
     margin-bottom: 6px;
 }
