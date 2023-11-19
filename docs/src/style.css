@@ -169,6 +169,9 @@ select {
     margin-top: 1.4rem;
 }
 #result-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
     margin-bottom: 0.7rem;
 }
 #imagescene-status {
