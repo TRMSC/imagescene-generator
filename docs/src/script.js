@@ -621,6 +621,9 @@ modifyContent = (action, content) => {
     // Use the original svg tag
     lines[2] = originSvgTag;
 
+    // Add xml declaration
+    lines.unshift('<?xml version="1.0" encoding="UTF-8" standalone="no"?>', '');
+
   }
 
   // Connect remaining lines
