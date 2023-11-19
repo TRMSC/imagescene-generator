@@ -111,6 +111,12 @@ details:not([open]) summary::after {
 details[open] summary::after {
     content: " \23F6"; 
 }
+.ic-tag-container {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    margin-bottom: 6px;
+}
 .ic-css-cube {
     cursor: pointer;
     border: 1px solid black;
