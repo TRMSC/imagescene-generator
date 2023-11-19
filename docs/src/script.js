@@ -130,17 +130,21 @@ listenEvents = () => {
     changeStatus();
   });
 
-  // Update status when width input was changes
+  // Update status when width input was changed
   let width = document.getElementById('imagescene-w');
   width.addEventListener('input', changeStatus);
 
-  // Update status when height input was changes
+  // Update status when height input was changed
   let height = document.getElementById('imagescene-h');
   height.addEventListener('input', changeStatus);
 
-  // Update status when alt input was changes
+  // Update status when alt input was changed
   let alt = document.getElementById('imagescene-alt');
   alt.addEventListener('input', changeStatus);
+
+  // Update status when css input was changed
+  let css = document.getElementById('ic-css');
+  css.addEventListener('input', changeStatus);
 
   // Clean generator fields
   let clean = document.getElementById('imagescene-clean');
@@ -152,6 +156,7 @@ listenEvents = () => {
   document.querySelectorAll('.ic-css-cube').forEach(cube => {
     cube.addEventListener('click', function(event) {
       insertCube(event.currentTarget.dataset.rule);
+      changeStatus();
     }); 
   });
 
