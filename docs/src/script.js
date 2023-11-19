@@ -459,7 +459,7 @@ insertCube = (rule) => {
   if (textarea.value.trim() !== '') textarea.value += '\n';
 
   // Add rule
-  textarea.value = rule;
+  textarea.value += rule;
 
 };
 
