@@ -463,6 +463,9 @@ insertCube = (rule) => {
     textarea.value += (textarea.value.trim() !== '') ? '\n' + rule : rule;
   }
 
+  // Remove empty lines
+  textarea.value = textarea.value.replace(/^\s*[\r\n]/gm, '');
+
 };
 
 
