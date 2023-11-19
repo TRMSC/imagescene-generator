@@ -122,10 +122,8 @@ details[open] summary::after {
     border: 1px solid black;
     width: fit-content;
     padding: 0px 4px;
-}
-.ic-css-cube span {
     font-family: monospace;
-    font-size: 9pt;
+    font-size: 10pt;
 }
 select {
     font-size: 12pt;
