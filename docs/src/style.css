@@ -111,6 +111,16 @@ details:not([open]) summary::after {
 details[open] summary::after {
     content: " \23F6"; 
 }
+.ic-css-cube {
+    cursor: pointer;
+    border: 1px solid black;
+    width: fit-content;
+    padding: 0px 4px;
+}
+.ic-css-cube span {
+    font-family: monospace;
+    font-size: 9pt;
+}
 select {
     font-size: 12pt;
 }
