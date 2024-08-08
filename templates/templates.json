@@ -1,6 +1,12 @@
 {
     "templates": [
       {
+        "name": "Starlight",
+        "filename": "starlight.raw",
+        "author": "Florian Dagner",
+        "description": "mit Scheinwerferlicht, das eine Person oder ein Objekt in Szene setzt."
+      },
+      {
         "name": "Bubbles",
         "filename": "bubbles.raw",
         "author": "Florian Dagner",
