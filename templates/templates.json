@@ -1,10 +1,11 @@
 {
     "templates": [
       {
-        "name": "Starlight",
-        "filename": "starlight.raw",
-        "author": "Florian Dagner",
-        "description": "mit Scheinwerferlicht, das eine Person oder ein Objekt in Szene setzt."
+        "name": "Indian Summer",
+        "filename": "indian-summer.raw",
+        "author": "TRMSC",
+        "description": "mit langsam nach unten schwebenden Staubpartikeln und wandernden Sonnenreflexen.",
+        "default": true
       },
       {
         "name": "Bubbles",
@@ -13,11 +14,10 @@
         "description": "mit aufploppenden Blasen in unterschiedlicher Größe und Geschwindigkeit, die nach oben aufsteigend langsam verschwinden."
       },
       {
-        "name": "Indian Summer",
-        "filename": "indian-summer.raw",
-        "author": "TRMSC",
-        "description": "mit langsam nach unten schwebenden Staubpartikeln und wandernden Sonnenreflexen.",
-        "default": true
+        "name": "Starlight",
+        "filename": "starlight.raw",
+        "author": "Florian Dagner",
+        "description": "mit Scheinwerferlicht, das eine Person oder ein Objekt in Szene setzt."
       }
     ]
   }
